@@ -1,0 +1,996 @@
+\documentclass[a4paper,11.5pt]{article}
+
+\usepackage[textwidth=135mm]{geometry}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[T1]{fontenc}
+
+\PassOptionsToPackage{defaults=hu-min}{magyar.ldf}
+
+\usepackage[magyar]{babel}
+
+\usepackage{amsmath,amssymb,paralist,array}
+
+
+
+\begin{document}
+
+	%%%%%%%%%%%RÖVIDÍTÉSEK%%%%%%%%%%
+
+	%\setlength\parindent{0pt}
+
+	\def\a{\textbf{a}}
+
+	\def\b{\textbf{b}}
+
+	\def\N{\hskip 10 true mm}
+
+	\def\a{\textbf{a}}
+
+	\def\b{\textbf{b}}
+
+	\def\c{\textbf{c}}
+
+	\def\d{\textbf{d}}
+
+	\def\e{\textbf{e}}
+
+	\def\gg{$\gamma$}
+
+	\def\vi{\textbf{i}}
+
+	\def\jj{\textbf{j}}
+
+	\def\kk{\textbf{k}}
+
+	\def\fh{\overrightarrow}
+
+	\def\l{\lambda}
+
+	\def\m{\mu}
+
+	\def\v{\textbf{v}}
+
+	\def\0{\textbf{0}}
+
+	\def\s{\hspace{0.2mm}\vphantom{\beta}}
+
+	\def\Z{\mathbb{Z}}
+	\def\Q{\mathbb{Q}}
+	\def\R{\mathbb{R}}
+	\def\C{\mathbb{C}}
+	\def\N{\mathbb{N}}
+	\def\Rn{\mathbb{R}^{n}}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+	\begin{flushright}
+
+		Husi kidolgozása (\LaTeX)
+
+	\end{flushright}
+
+	\begin{center}
+
+		Lineáris algebra (A, B, C)\\
+
+	1. előadás
+
+	\end{center}
+
+	\noindent Kezdjük az alapfogalmak tisztázásával:
+	\begin{compactitem}
+		\item $\forall$ - univerzális kvantor, köznapi nyelven ,,minden''
+		\item $\exists$ - egzisztenciális kvantor, köznapi nyelven ,,létezik/van olyan''
+		\item $!$ \ - egyértelműség jele, ,,csak egy ilyen van''
+	\end{compactitem}
+	Ezeknek a jeleknek a megértése kulcsfontosságú a későbbi anyagok megértésénél, így érdemes gondoskodni arról, hogy teljesen tisztában legyünk jelentésükkel.
+	
+	Alkalmazásban: $\forall a \in \R~\exists!b \in \R: \quad a+b=0.~$ Ez köznapi nyelven azt jelenti, hogy \emph{minden} $a$ valós számhoz \emph{egyértelműen létezik} olyan $b$ valós szám, melyre $a+b=0$. A kijelentés pedig nyilvánvalóan igaz, hisz minden valós számnak a $(-1)$-szerese lesz az, mellyel összeadva az összeg 0. A tételek helyes kiolvasásáról bővebben a második előadásban lesz szó.\\
+	DEFINÍCIÓ: (Descartes-szorzat) Legyen $A$ és $B$ halmazok. Ekkor $A$ és $B$ Descartes-szorzata:
+	\begin{center}
+		$A \times B=\{(a,b)~|~a\in A~~\text{és}~~b\in B\}$.
+	\end{center}
+	\noindent Szemléletesebben $A\times B$ olyan \emph{rendezett párok} halmaza, melynek első komponense A-béli, második komponense B-beli. A rendezet pároknak van egy fontos tulajdonsága a hagyományos halmazokkal szemben, itt a sorrend ugyanis számít, $(a,b) \overset{\text{\textit{ált.}}}{\not=} (b,a)$.
+	
+	\noindent Alkalmazásban: $A=\{1, 2, 3\}, \quad B=\{a, b, c\}$ esetén\\
+	$A\times B=\{(1, a), (1, b), (1, c), (2, a), (2, b), (2, c), (3, a), (3, b), (3, c)\}$.
+	
+	\bigskip
+	Tanulmányaink folyamán a valós számok Descartes-szorzatával fogunk túlnyomó többségben foglalkozni, melyeket így jelölünk röviden: $\R \times\R=\R^2,~~\overbrace{\R\times\ldots\times\R}^{n \text{ darab}}=\Rn$.
+	
+	Hol találkoztunk mi középiskolában rendezett párokkal (azon belül is rendezett \emph{szám}pá\-rok\-kal)? A derékszögű koordinátarendszerbéli pontok, vagy ahhoz tartozó helyvektorok felfoghatók rendezett valós szám párokként, pl. $(4, 2)$. 
+	
+	Elevenítsük fel a síkbeli vektorok összeadását! Derékszögű koordinátarenszdszerben a ,,rajzolós'' paralelogramma módszer ismeretes, algebrai módszerekkel a koordinátánkénti  összeadás, pl. $(1, 2) + (3, 4) =(4, 6)$. Általánoasbban, egy $(x_1, y_1) \in \R^2$ és $(x_2, y_2) \in \R^2$ koordinátákkal rendelkező vektor összege $(x_1+x_2, y_1+y_2) \in \R^2$.
+	
+	Skalárral való szorzás (figyelem, NEM skaláris szorzás!) vektorokra úgy értelmeztük, hogy ,,annyiszeresére zsugorítom/növelem, vagy változtatom az irányát'' a vektornak, amennyivel szorzom. Ez algebrai úton egy tetszőleges $\lambda \in \R$ számra és $(x,y)\in\R^2$ vektorra értelmezett skalárral vett szorzás végeredménye $\lambda(x, y)= (\lambda x, \lambda y) \in \R^2$.
+	
+	Vegyünk most egy kicsit absztraktabb példát, egy számegyenest. Felfoghatjuk a számegyenesen lévő számokat úgy, mint 1 komponensű\footnote{komponens = elem, ennél a példánál még azt is mondhatjuk hogy koordináta, de ez később gondokat okozhat, amikor ez a két fogalom nem lesz ekvivalens.} vektorok, pl. 3 helyett mondjuk azt hogy (3) az origóból a 3-ba mutató helyvektor. A paralelogramma módszer továbbra is működik, hisz ha (2) és (1) vektort össze akarjuk adni, akkor (1) kezdőpontját (2) végpontjához illesztve megkapjuk a (3) vektort. 
+	
+	Ebben tulajdonképpen nincs semmi meglepő. Ez csak valós számok összeadása. Megemlítendő, hogy a skalárral való szorzás is tökéletesen működik, pl. $6\cdot(4)=(24)$.
+	
+	Ugorjunk egy újabb példára, egy 3 dimenziós derékszögű koordinátarendszerbe. Itt minden vektornak 3 komponense van. Nem meglepő módon $(1,2,3)+(5,3,0)=(6,5,3)$, skalár szorzással $5(1,0,3)=(5,0,15)$. Minden vektor itt felfogható rendezett valós számhármasként ($\R^3$).
+	
+	\medskip
+	Feltűnhet, hogy minden alkalommal, amikor műveletet hajtunk végre egy vektoron, simán egyszerre több számmal csináljuk ugyanazt. Ezt a tulajdonságot másra is felhasználhatnánk, ahol egyszere több számon szeretnénk hasonló műveleteket végrehajtani. Próbáljunk megalkotni egy olyan struktúrát, mely ezen igényünket kielégíti! Induljunk ki rendezett valós szám 3-asokból. (Itt már nem geometriai vektorokról fogunk beszélni!)
+	
+	$\begin{bmatrix}
+		\alpha_1 \s\\
+		\alpha_2\s \\
+		\alpha_3\s \\
+	\end{bmatrix} \in \R^3$ legyen egy ilyen elem, $\R^3$ jelölje az összes ilyen rendezett valós számhármas halmazát. Bár vektoroknál volt definiálva összeadás és skalárral vett szorzás, mi most valami újat szeretnénk alkotni, így itt definiálnunk kell ezeket a műveleteket is.
+	
+		{\centering
+			$ \a=
+			\begin{bmatrix}
+			\alpha_{1}\s \\
+			\alpha_{2}\s \\
+			\alpha_{3}\s \\
+			\end{bmatrix},~ \b =
+			\begin{bmatrix}
+			\beta_{1}\s \\
+			\beta_{2}\s \\
+			\beta_{3}\s \\
+			\end{bmatrix} \in  \R^{3}$ \quad esetén legyen $\quad \a + \b= 
+			\begin{bmatrix}
+			\alpha_{1}+\beta_{1}\s \\
+			\alpha_{2}+\beta_{2}\s \\
+			\alpha_{3}+\beta_{3}\s \\
+			\end{bmatrix} \in  \R^{3}, $
+			
+			$\gamma\in  \R,  \a =
+			\begin{bmatrix}
+			\alpha_{1}\s \\
+			\alpha_{2}\s \\
+			\alpha_{3}\s \\
+			\end{bmatrix} \in  \R^{3}$\qquad esetén legyen $\quad\gamma\a=
+			\begin{bmatrix}
+			\gamma\alpha_{1}\s \\
+			\gamma\alpha_{2}\s \\
+			\gamma\alpha_{3}\s \\
+			\end{bmatrix} \in \R^{3}$.
+			\par}
+	
+	\noindent Bár nem \emph{muszáj} oszloposan írni, így célszerű használni a későbbi alkalmazásuk miatt.
+	
+	Lévén ezek csak rendezett valós számhármasok, félrevezető lenne elemeit koordinátáknak nevezni, így maradjunk a komponens (vagy elem) kifejezésnél. Ez a rész később jobban ki fog tisztulni.
+	
+	Figyeljük meg ezek alkalmazásait egy lineáris egyenletrendszerben (továbbiakban LER): $x, y, z \in \R $
+	
+	{\centering
+		$\begin{matrix} 
+		x + y + z &=& 3\\
+		2x + 3y + 4z &=& 9\\
+		3x + 4y + 5z& =& 12
+		\end{matrix}$
+		\par}
+
+	\noindent Legyen:
+	
+	{\centering
+		$\a=
+		\begin{bmatrix}
+		1\s \\
+		2\s \\
+		3\s \\
+		\end{bmatrix},~
+		\b~=
+		\begin{bmatrix}
+		1\s \\
+		3\s \\
+		4\s \\
+		\end{bmatrix},~
+		\c~=
+		\begin{bmatrix}
+		1\s \\
+		4\s \\
+		5\s \\
+		\end{bmatrix},~
+		\d~=
+		\begin{bmatrix}
+		3\s \\
+		9\s \\
+		12\s \\
+		\end{bmatrix}$
+	\par}
+	
+	\noindent ahol \a~$x$ együtthatóiból, \b~ $y $ együtthatóiból, \c~$z$ együtthatóiból, és \d~az egyenletek jobb oldalából áll. Ekkor a fenti LER egyetlen egyenletbe sűríthető:
+	
+	{\centering
+		$x\a + y\b + z\c = \d$.
+	\par}
+	
+	\noindent E kettő ekvivalens, hisz:
+	
+	{\centering
+		$x\a + y\b + z\c = \d \Leftrightarrow 
+		\begin{bmatrix}
+		1\s \\
+		2\s \\
+		3\s \\
+		\end{bmatrix}\cdot x+
+		\begin{bmatrix}
+		1\s \\
+		3\s \\
+		4\s \\
+		\end{bmatrix}\cdot y+
+		\begin{bmatrix}
+		1\s \\
+		4\s \\
+		5\s \\
+		\end{bmatrix}\cdot z=
+		\begin{bmatrix}
+		3\s \\
+		9\s \\
+		12\s \\
+		\end{bmatrix}\Leftrightarrow$ \\ $ \Leftrightarrow
+		\begin{bmatrix}
+		1x\s \\
+		2x\s \\
+		3x\s \\
+		\end{bmatrix}+
+		\begin{bmatrix}
+		1y\s \\
+		3y\s \\
+		4y\s \\
+		\end{bmatrix}+
+		\begin{bmatrix}
+		1z\s \\
+		4z\s \\
+		5z\s \\
+		\end{bmatrix}=
+		\begin{bmatrix}
+		3\s \\
+		9\s \\
+		12\s \\
+		\end{bmatrix} \Leftrightarrow
+		\begin{bmatrix} 
+			x + y + z &=& 3\\
+			2x + 3y + 4z &=& 9\\
+			3x + 4y + 5z& =& 12
+		\end{bmatrix}.
+		$
+		\par}
+	
+	\noindent Ezeket a lépéseket azért tehettük meg, mert korábban e szabályok szerint definiáltuk őket. Könnyen megállapítható hogy $\a+\b+\c=\d$, megoldás lesz, azaz $x_1=1, y_1=1, z_1=1$. Több (sőt, végtelen sok) megoldás van, azonban mi haladjunk tovább: 
+	
+	\pagebreak
+	Próbáljuk meg a példánkat általánosítani\footnote{ide kéne valami frappáns leírás}. Meglehetősen kényelmetlen lenne a fenti LER-ben minden együtthatónak és változónak új betűjelet adni, így az alábbi jelölést alkalmazzuk majd:
+	
+	\begin{center}
+		$\begin{matrix}
+		a_{11}x_{1} + a_{12}x_{2} + a_{13}x_{3} + a_{14}x_{4} &=& b_{1}\\
+		a_{21}x_{1} + a_{22}x_{2} + a_{23}x_{3} + a_{24}x_{4} &=& b_{2}\\
+		a_{31}x_{1} + a_{32}x_{2} + a_{33}x_{3} + a_{34}x_{4} &=& b_{3}\\
+		\end{matrix}$
+	\end{center}
+	
+	\noindent Az itteni jelölések összezavaróak lehetnek, szóval szerepeljen egy magyarázat is:
+	
+	
+	\begin{center}
+		\setlength{\extrarowheight}{7pt}
+	\begin{tabular}{cc|c|c|c|c|c|cccc}
+		&{\LARGE 1}&&{\LARGE2}&&{\LARGE3}&&{\LARGE4}&&\\
+		{\LARGE 1}&$a_{11}x_{1} $&$+$&$ a_{12}x_{2}$ &$+$&$ a_{13}x_{3}$ &$+$& $a_{14}x_{4}$ &$=$& $b_{1}$\\
+		\hline
+		{\LARGE 2}&$a_{21}x_{1} $&$+$&$ a_{22}x_{2}$ &$+$&$ a_{23}x_{3}$ &$+$&$ a_{24}x_{4}$ &$=$& $b_{2}$\\
+		\hline
+		{\LARGE 3}&$a_{31}x_{1}$ &$+$& $a_{32}x_{2}$ &$+$&$ a_{33}x_{3} $&$+$&$ a_{34}x_{4}$ &$=$& $b_{3}$\\
+	\end{tabular}
+	\end{center}
+	
+	\noindent Félreértést elkerületndő, $a_{11}$ nem a 11. $a$-ra utal, hanem az első sor első oszlopában lévő változó együtthatójára (helyes kiejtés: ,,a egy egy''). Általánosan:
+	
+	
+	\begin{center}
+		$a_{ij}x_j \rightarrow$ $i$-edik sor, $j$-edik elemének együtthatója és változója.
+	\end{center}
+	
+
+	\noindent (értelemszerűen $i,j \in \N$, ezt nem sokszor fogom kiírni). Ez a kétindexes jelölés majd a mátrixoknál lesz igazán fontos. Így:
+	\begin{center}
+		$\b =
+		\begin{bmatrix}
+		b_{1}\s \\
+		b_{2}\s \\
+		b_{3}\s \\
+		\end{bmatrix},~
+		\a_{1} =
+		\begin{bmatrix}
+		a_{11}\s \\
+		a_{21}\s \\
+		a_{31}\s \\
+		\end{bmatrix},~
+		\a_{2} =
+		\begin{bmatrix}
+		a_{12}\s \\
+		a_{22}\s \\
+		a_{32}\s \\
+		\end{bmatrix},~
+		\a_{3} =
+		\begin{bmatrix}
+		a_{13}\s \\
+		a_{23}\s \\
+		a_{33}\s \\
+		\end{bmatrix},~
+		\a_{4} =
+		\begin{bmatrix}
+		a_{14}\s \\
+		a_{24}\s \\
+		a_{34}\s \\
+		\end{bmatrix}$.
+	\end{center}
+	
+	\noindent Ezeknek a jelöléseknek a megértése kulcsfontosságú, így erősen javallott alaposan átnézni és értelmezni őket továbbhaladás előtt.
+	
+	\bigskip
+	Nyilván, nem csak 3 egyenlettel kell foglalkoznunk egyszerre, általában többel, mondjuk $n$ darabbal ($n \in \N$, ez is ritkán lesz kikötve):
+	\begin{center}
+		$\begin{matrix}
+		a_{11}x_{1} + a_{12}x_{2} + a_{13}x_{3} + a_{14}x_{4} &=& b_{1}\\
+		a_{21}x_{1} + a_{22}x_{2} + a_{23}x_{3} + a_{24}x_{4} &=& b_{2}\\
+		\vdots\\
+		a_{n1}x_{1} + a_{n2}x_{2} + a_{n3}x_{3} + a_{n4}x_{4} &=& b_{n}\\
+		\end{matrix}$
+	\end{center}
+	\noindent Logikus lenne az általánosítás:
+	\begin{center}
+		$\a_1=
+		\begin{bmatrix}
+		a_{11}\s \\
+		a_{21}\s \\
+		\vdots\\
+		a_{n1}\s \\
+		\end{bmatrix},~\a_2
+		\begin{bmatrix}
+		a_{12}\s \\
+		a_{22}\s \\
+		\vdots\\
+		a_{n2}\s \\
+		\end{bmatrix},~\a_3=
+		\begin{bmatrix}
+		a_{13}\s \\
+		a_{23}\s \\
+		\vdots\\
+		a_{n3}\s \\
+		\end{bmatrix},~\a_4=
+		\begin{bmatrix}
+		a_{14}\s \\
+		a_{24}\s \\
+		\vdots\\
+		a_{n4}\s \\
+		\end{bmatrix},~\b=
+		\begin{bmatrix}
+		b_{1}\s \\
+		b_{2}\s \\
+		\vdots\\
+		b_{n}\s \\
+		\end{bmatrix}$.
+	\end{center}
+	Igen, ezeket azonban így nem adhatjuk össze, hisz egyszerre $n$ szám ($n \not=1, 3$) összeadása nem volt még definiálva. Tehát, legyenek a fenti szimbólumok rendezett valós szám $n$-esek, $\Rn$~elemei, és:
+	
+	\pagebreak
+	 DEFINÍCIÓ: { Legyen} $n$ { rögzített pozitív
+		egész szám, továbbá}
+	
+	{\centering 
+		$\begin{bmatrix}
+		\alpha_{1}\s \\
+		\alpha_{2}\s \\
+		\vdots\\
+		\alpha_{n}\s \\
+		\end{bmatrix},~
+		\begin{bmatrix}
+		\beta_{1}\s \\
+		\beta_{2}\s \\
+		\vdots\\
+		\beta_{n}\s \\
+		\end{bmatrix} \in\Rn\quad$ {esetén legyen}
+		$\quad
+		\begin{bmatrix}
+		\alpha_{1}\s \\
+		\alpha_{2}\s \\
+		\vdots\\
+		\alpha_{n}\s \\
+		\end{bmatrix} +
+		\begin{bmatrix}
+		\beta_{1}\s \\
+		\beta_{2}\s \\
+		\vdots\\
+		\beta_{n}\s \\
+		\end{bmatrix} =
+		\begin{bmatrix}
+		\alpha_{1}+\beta_{1}\s \\
+		\alpha_{2}+\beta_{2}\s \\
+		\vdots\\
+		\alpha_{n}+\beta_{n}\s \\
+		\end{bmatrix} \in \Rn, $
+		
+		$\lambda \in  \R,
+		\begin{bmatrix}
+		\alpha_{1}\s \\
+		\alpha_{2}\s \\
+		\vdots\\
+		\alpha_{n}\s \\
+		\end{bmatrix} \in  \Rn\quad$ {esetén legyen}$\quad
+		\lambda
+		\begin{bmatrix}
+		\alpha_{1}\s \\
+		\alpha_{2}\s \\
+		\vdots\\
+		\alpha_{n}\s \\
+		\end{bmatrix} =
+		\begin{bmatrix}
+		\lambda\alpha_{1}\s \\
+		\lambda\alpha_{2}\s \\
+		\vdots\\
+		\lambda\alpha_{n}\s \\
+		\end{bmatrix} \in  \Rn$. 
+		\par}
+	
+	\noindent Két rendezett valós szám $n$-es akkor egyenlő, ha a két oszlop megfelelő helyein elemük megegyezik. Így a fenti, általánosított alakra is teljesül: $\a_1x_1+\a_2x_2+\a_3x_3+\a_4x_4=\b$. A gond a következő, szeretnénk, ha a fent definiált 2 művelet rendelkezne a valós számokra értelmezett összeadás és (skalár) szorzás egyes tulajdonságaival. Ilyen például:
+	\begin{itemize}
+		\item kommutativitás, valós számoknál: $\forall a,b \in \R: \quad a+b=b+a$ (felcserélhetőség),
+		\item asszociativitás, valósoknál: $\forall a,b,c \in \R: \quad (a+b)+c=a+(b+c)$ (szabadon zárójelezhetőség)
+	\end{itemize}
+	
+	\noindent Így elérkeztünk az első tételünkhöz:
+	
+	 TÉTEL: A rendezett valós szám $n$-esek közötti összeadás kommutatív.
+	
+	\noindent Bizonyítás:
+	
+	{\centering
+	$\begin{bmatrix}
+	\alpha_{1}\s \\
+	\alpha_{2}\s \\
+	\vdots\\
+	\alpha_{n}\s \\
+	\end{bmatrix}$,$
+	\begin{bmatrix}
+	\beta_{1}\s \\
+	\beta_{2}\s \\
+	\vdots\\
+	\beta_{n}\s \\
+	\end{bmatrix} \in  \Rn$~esetén  
+		$\begin{bmatrix}
+		\alpha_{1}\s \\
+		\alpha_{2}\s \\
+		\vdots\\
+		\alpha_{n}\s \\
+		\end{bmatrix}+
+		\begin{bmatrix}
+		\beta_{1}\s \\
+		\beta_{2}\s \\
+		\vdots\\
+		\beta_{n}\s \\
+		\end{bmatrix}=
+		\begin{bmatrix}
+		\alpha_{1}+\beta_{1}\s \\
+		\alpha_{2}+\beta_2\s \\
+		\vdots\\
+		\alpha_{n}+\beta_n\s \\
+		\end{bmatrix}=
+		\begin{bmatrix}
+		\beta_1+\alpha_{1}\s \\
+		\beta_2+\alpha_{2}\s \\
+		\vdots\\
+		\beta_n+\alpha_{n}\s \\
+		\end{bmatrix}=
+		\begin{bmatrix}
+		\beta_{1}\s \\
+		\beta_{2}\s \\
+		\vdots\\
+		\beta_{n}\s \\
+		\end{bmatrix}+
+		\begin{bmatrix}
+		\alpha_{1}\s \\
+		\alpha_{2}\s \\
+		\vdots\\
+		\alpha_{n}\s \\
+		\end{bmatrix}$.
+		\par}
+	
+	\noindent Ezt a lépést azért tehetük meg, mert a valós számokról tudjuk hogy kommutatívak összadásra, így $\alpha_i+\beta_i=\beta_i+\alpha_i.~\blacksquare$
+	
+	\noindent Ezzel az első tételünket bebizonyítottuk, az összeadás (legalábis 2 elemre) kommutatív.
+	
+	 TÉTEL: ~$\a,\b,\c \in \Rn$-re reljesül, hogy $(\a+\b)+\c=\a+(\b+\c)$.
+	
+	\noindent Bizonyítás: 
+	
+	{\centering
+		$\begin{bmatrix}
+		\alpha_{1}\s \\
+		\alpha_{2}\s \\
+		\vdots\\
+		\alpha_{n}\s \\
+		\end{bmatrix}$,$
+		\begin{bmatrix}
+		\beta_{1}\s \\
+		\beta_{2}\s \\
+		\vdots\\
+		\beta_{n}\s \\
+		\end{bmatrix}$,$
+		\begin{bmatrix}
+		\gamma_{1}\s \\
+		\gamma_{2}\s \\
+		\vdots\\
+		\gamma_{n}\s \\
+		\end{bmatrix} \in  \Rn$~esetén $
+		\begin{pmatrix}
+		\begin{bmatrix}
+		\alpha_{1}\s \\
+		\alpha_{2}\s \\
+		\vdots\\
+		\alpha_{n}\s \\
+		\end{bmatrix}+
+		\begin{bmatrix}
+		\beta_{1}\s \\
+		\beta_{2}\s \\
+		\vdots\\
+		\beta_{n}\s \\
+		\end{bmatrix}
+		\end{pmatrix}+
+		\begin{bmatrix}
+		\gamma_{1}\s \\
+		\gamma_{2}\s \\
+		\vdots\\
+		\gamma_{n}\s \\
+		\end{bmatrix}$=$
+		\begin{bmatrix}
+			\alpha_{1}+\beta_{1}\s \\
+			\alpha_{2}+\beta_2\s \\
+			\vdots\\
+			\alpha_{n}+\beta_n\s \\
+		\end{bmatrix}+
+		\begin{bmatrix}
+			\gamma_{1}\s \\
+			\gamma_{2}\s \\
+			\vdots\\
+			\gamma_{n}\s \\
+		\end{bmatrix}=
+		\begin{bmatrix}
+			(\alpha_{1}+\beta_1)+\gamma_1\s \\
+			(\alpha_{2}+\beta_2)+\gamma_2\s \\
+			\vdots\\
+			(\alpha_{n}+\beta_n)+\gamma_n\s \\
+		\end{bmatrix}$=$
+		\begin{bmatrix}
+			\alpha_{1}+(\beta_1+\gamma_1)\s \\
+			\alpha_{2}+(\beta_2+\gamma_2)\s \\
+			\vdots\\
+			\alpha_{n}+(\beta_n+\gamma_n)\s \\
+		\end{bmatrix}=
+		\begin{bmatrix}
+		\alpha_{1}\s \\
+		\alpha_{2}\s \\
+		\vdots\\
+		\alpha_{n}\s \\
+		\end{bmatrix}+
+		\begin{bmatrix}
+			\beta_1+\gamma_1\s \\
+			\beta_2+\gamma_2\s \\
+			\vdots\\
+			\beta_n+\gamma_n\s \\
+		\end{bmatrix}= $ \linebreak $
+		\begin{bmatrix}
+			\alpha_{1}\s \\
+			\alpha_{2}\s \\
+			\vdots\\
+			\alpha_{n}\s \\
+		\end{bmatrix}+
+		\begin{pmatrix}
+			\begin{bmatrix}
+				\beta_{1}\s \\
+				\beta_{2}\s \\
+				\vdots\\
+				\beta_{n}\s \\
+			\end{bmatrix}+
+			\begin{bmatrix}
+				\gamma_{1}\s \\
+				\gamma_{2}\s \\
+				\vdots\\
+				\gamma_{n}\s \\
+			\end{bmatrix}
+		\end{pmatrix}.~\blacksquare$
+		\par}
+	
+	\noindent Ezen a ponton érdemes megjegyezni, hogy egyszerre 3 rendezett valós szám $n$-est összeadni nem tudunk, mindig páronként tesszük ezt meg (ezzel még én is csaltam pár oldallal korábban!). Persze könnyen belátható, hogy így VÉGES sok rendezett valós szám $n$-es összeadása elvégezhető egy lépésben, de valójában itt is páronkénti összeadások sorozatát hajtjuk végre. Ne feledjük el, itt csak 3 $\Rn$-béli rendezett valós szám $n$-es asszociativitását bizonyítottuk, nem tetszőleges véges sokét. Nemsokára ezt is belátjuk, azonban ez kicsit nagy falat lenne ilyen hamar.
+	
+	Valós számok összeadásánál volt un. semleges elemünk. Olyan szám, melyre teljesül, hogy minden valós számmal vett összege az eredeti számot adja vissza: nulla.
+	
+	Rendezett valós szám $n$-eseknél mi lesz az additív (összeadásra értelmezett) semleges elem? Könnyen belátható:
+	
+	\begin{center}
+		$\begin{bmatrix}
+		\alpha_{1}\s \\
+		\alpha_{2}\s \\
+		\vdots\\
+		\alpha_{n}\s \\
+	\end{bmatrix}=
+	\begin{bmatrix}
+	\alpha_{1}+0\s \\
+	\alpha_{2}+0\s \\
+	\vdots\\
+	\alpha_{n}+0\s \\
+	\end{bmatrix}=
+	\begin{bmatrix}
+	\alpha_{1}\s \\
+	\alpha_{2}\s \\
+	\vdots\\
+	\alpha_{n}\s \\
+	\end{bmatrix}+
+	\begin{bmatrix}
+	0\s \\
+	0\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix}$.
+	\end{center}
+	\noindent Ez a csupa nullából álló szám $n$-es hasonlóan viselkedik mint a középsikolában tanult nullvektor! Továbbiakban jelölje ezt az elemet $\0 \in \Rn$. Ugyanígy additív inverzet is kereshetünk (olyan elemet, mellyel bármely más elemmel összeadva visszakapjuk a semleges elemet, pl.: $a \in \R: (-a)+a=0$, Itt $a$ additív inverze $(-a)$):
+	
+	\begin{center}
+		$\a=
+	\begin{bmatrix}
+	\alpha_{1}\s \\
+	\alpha_{2}\s \\
+	\vdots\\
+	\alpha_{n}\s \\
+	\end{bmatrix} \in \Rn: \quad
+	\begin{bmatrix}
+	0\s \\
+	0\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix}=
+	\begin{bmatrix}
+	\alpha_{1}+(-\alpha_1)\s \\
+	\alpha_{2}+(-\alpha_2)\s \\
+	\vdots\\
+	\alpha_{n}+(-\alpha_n)\s \\
+	\end{bmatrix}=
+	\begin{bmatrix}
+	\alpha_{1}\s \\
+	\alpha_{2}\s \\
+	\vdots\\
+	\alpha_{n}\s \\
+	\end{bmatrix}+
+	\begin{bmatrix}
+	-\alpha_{1}\s \\
+	-\alpha_{2}\s \\
+	\vdots\\
+	-\alpha_{n}\s \\
+	\end{bmatrix}=\a+(-\a).$
+	\end{center}
+	Jelölje \a~inverzét (vagy ellentetjét) $(-\a)$. Belátható, hogy skalárral vett szorzással\\ $(-1)\a=(-\a)$.
+	
+	Nagyon jó úton járunk egy kényelmesen kezelhető, a vektorok, és azon értelmezett összeadáshoz és skalárral vett szorzáshoz hasonló struktúra kialakításán. Valamennyi dolog még könnyen belátható az előző két tételhez hasonlóan: ilyen a skalárral való szorzás és összeadás kétféle disztributív kapcsolata (ez mindjárt alaposabban ki lesz fejtve) és a skalárral való szorzás ,,asszociativitása''. Ezen a ponton igen jól kezelhető rendszert kaptunk, így már bátran összefoglalhatunk:
+	
+	\medskip
+	$(\Rn, +, \lambda \cdot )$ {tulajdonságai:}
+	
+	\smallskip
+	\noindent I./1. $+: \Rn \times  \Rn  \rightarrow  \Rn,$ azaz
+	$\forall \a, \b \in  \Rn$-hez hozzá van rendelve egy $\a + \b \in
+	 \Rn$ ; 
+	
+	\smallskip
+	\noindent I./2. $\forall \a, \b \in  \Rn  \quad \b + \a =\a +
+	\b$ (kommutativitás);  
+	
+	\smallskip
+	\noindent I./3. $\forall \a, \b, \c \in  \Rn  \quad (\a + \b )+ \c = \a +
+	(\b + \c)$ (asszociativitás);
+	
+	\smallskip
+	\noindent I./4. $\exists \0 \in   \Rn   :  \forall \a \in  \Rn  \quad
+	\0+\a =\a (=\a +\0)$ (,,nullvektor'' létezése);
+	
+	\smallskip
+	\noindent I./5. $\forall \a \in  \Rn~ \exists (-\a )\in  \Rn~   : 
+	(-\a )+\a =\0~ (=\a+(-\a ))$ (,,ellentett'' létezése);
+	
+	\smallskip
+	\noindent II./1. $\l \cdot :   \R  \times  \Rn  \rightarrow  \Rn$, azaz
+	$\forall \l \in  \R,~\a \in  \Rn$-hez hozzá van rendelve egy $\l
+	\a \in  \Rn$; 
+	
+	\smallskip
+	\noindent II./2. $\forall \l, \m \in  \R , \a \in  \Rn  \quad (\l \m )\a =\l
+	(\m \a )$ (,,asszociativitás'');
+	
+	\smallskip
+	\noindent II./3. $\forall \l, \m \in  \R , \a \in  \Rn  \quad (\l +\m )\a =\l
+	\a +\m \a$ (első disztibutivitás);
+	
+	\smallskip
+	\noindent II./4. $\forall \l \in  \R , \a , \b \in  \Rn  \quad \l (\a +\b )=\l
+	\a +\l \b $ (második disztributivitás);
+	
+	\smallskip
+	\noindent II./5. $\forall \a \in  \Rn  \quad 1\a =\a $.
+	
+	\medskip 
+	Bár elsőre ez lehet hogy nehezen érthető, de ez csupán minden, már korábban elhangzott dolog összefoglalása volt. Diszkrét matematika I-ben elhangzó algebrai struktúrával kapcsolatos tudások megszerzése után még sokkal világosabb lesz ez a rész.
+	
+	Lévén rendelkeznek minden középiskolában tanult vektor tulajdonsággal, $\Rn$-t \textbf{vektortér}nek, elemeit \textbf{vektor}oknak nevezzük majd (rendezett valós szám $n$-esek helyett). Tartsuk észben, itt nem ,,$n$ dimenzióbéli elképzelhetetlen irányított szakaszokkal bűvészkedünk'' -- a vektor kifejezés a hasonló tuladjonságuk miatt célszerű, illetve mert $\R^1, \R^2, \R^3$-ban szemléletesen is megmutatható valamennyi dolog. Motivációnk továbbra is a kényelmes adatkezelés, melyet e vektorokban tárolhatunk.\\
+	Értelemszerűen $\Rn$-nek vannak részhalmazai, de érdemes egy speciális részhalmazt definiálni: olyat, mely összeadásra és skalárral való szorzásra zárt. Ez alatt azt értjük, hogy bármely két elemét vesszük e $W \subset \Rn$~részhalmaznak, az összegük is eleme lesz $W$-nek. Skalárral vett szorzásra \emph{bármely} valós számmal vett szorzás eredményét szintén tartalmazza $W$. Összefoglalva:
+	
+	 DEFINÍCIÓ: $W$ { altere} $\Rn${-nek} \quad [{ jelölése:}
+	$W\leqq  \Rn$], \quad { ha teljesülnek:} 
+	
+	\noindent $\text{1.}\quad  \emptyset\not= W\subseteqq  \Rn  \qquad 
+	\text{2.}\quad \a ,\b \in W \Rightarrow \a +\b \in W \qquad 
+	\text{3.}\quad \l \in  \R , \a \in W \Rightarrow \l \a \in W .$ 
+	
+	\medskip
+	\noindent Példa:
+	
+	{\centering 
+		$W=\left\{
+	\begin{bmatrix}
+		\alpha\s\\
+		0\s\\
+		\vdots \\
+		0\s\\
+	\end{bmatrix} \in \Rn: \quad \alpha\in \R \right\}$.
+	\par}
+	
+	\noindent Ez egy olyan halmaz, mely minden olyan vekort tartalmaz, melyeknek az első komponensétől eltekintve minden eleme 0. 
+	Megjegyzés: \0 minden altérnek eleme, hisz $\lambda=0$ esetén (azaz ha skalár szorzásnál 0-val szorozzuk meg a vektort) ezt is tartalmaznia kell. Az alterek \emph{nem} kevesebb komponensből álló vektorokat tartalmaznak. Konyhanyelven $W$~$\Rn$~altere ha ,,nem lehet kijutni belőle'', zárt.
+	
+	Érdemes megjegyezni, hogy az axiómarendszerünk kiegészíthető, pl.: semleges elem és inverz \emph{egyértelműen} létezik. Ez következik abból, hogy az összeadás itt kommutatív, azonban ezeknek a megértése könnyebb a diszkrét matematika csoportlemélettel foglalkozó részének elhangzása után.
+	
+	Fontosabb megállapítás azonban az, hogy ha $\lambda \in \R,~\b \in \Rn: ~\lambda\b=\0$, akkor $\lambda=0$ vagy $\b=\0$. Ez nagyon hasonlít a valós számok szorzatánál, ahol ha a szorzat egyenlő nullával, akkor a szorzat (legalább) egyik tagja is egyenlő nullával.
+	
+	Most egyszerre több vektorral fogunk foglalkozni, így bevezetjük a \textbf{vektorrendszer} (röviden \textbf{vr}) fogalmát. Egy vektorrendszer csupán annyiban különbözik egy halmaztól, hogy ugyanabból az elemből többet is tartalmazhat (míg egy halmazban egyszerre egy elem csak egyszer szerepelhet).
+	
+	DEFINÍCIÓ: Legyen $k\ge1$,~$\a_1, \a_2, \ldots , \a_k \in \Rn,~ \lambda_1, \lambda, \ldots , \lambda_k \in \R.$ Az $\a_1, \a_2, \ldots , \a_k$ \textbf{vr}. $\lambda_1, \lambda, \ldots , \lambda_k$ együtthatós \emph{lineáris kombinációja}:
+	
+	\[\l _1\a_1+\l _2\a _2+\dots+\l _k \a_k \in \Rn,\]
+	
+	\noindent Abban az esetben, ha  $\l_1=0,  \l_2=0, \ldots, \l_k=0$, akkor \emph{triviális} lineáris kombinációról beszélünk, vagyis
+	\[0\a _1+0\a_2\dots+0\a _k.\]
+	
+	\noindent Értelemszerűen minden vektorrendszer \emph{triviális} lineáris kombinációja \0.
+	
+	
+	DEFINÍCIÓ: {\tt Az} $\a _1, \a _2, \dots, \a _k \;  \Rn${ -beli vr}
+	\emph{lineaárisan összefüggő} (rövidítve: Ö), { ha} 
+	$\exists~ \l _1, \l _2, \dots, \l _k \in  \Rn$, { nem mind} $0$, 
+	{ melyekre} $\l _1\a _1+\l _2 \a _2+\dots+\l _k\a_ k = \0$ (azaz, ha a
+	vektorrendszernek létezik nullvektort adó { nemtriviális} lineáris
+	kombinációja). 
+		
+	DEFINÍCIÓ: {\tt Az} $\a _1, \a _2, \dots, \a _k \;  \Rn${ -beli vr}
+	\emph{lineárisan független}  (rövidítve: L), { ha} 
+	$\{\m _1, \m _2, \dots, \m _k \in  \R ;~ 
+	\m _1\a _1+\m _2 \a _2+\dots+\m_k\a_ k = \0$ $\Rightarrow $ $\m _1 =\m _2 = \dots = \m _k = 0\}$
+	(azaz, ha a vektorrendszernek CSAK { a triviális} lineáris kombinációja ad
+	nullvektort). 
+	
+	Vegyünk ezen definíciókra egy példát: legyen adott két $\R^2$-béli vektort, melynek \emph{valamilyen} lineáris kombinációja egyenlő $\0 \in \R^2$-val. Ha lineárisan függetlenek, akkor egy rövid számolással megállapíthajuk hogy mindkét együttható is egyenlő nullával:\\  ($\alpha, \beta \in \R$)
+	
+	\begin{center}
+		$\alpha
+	\begin{bmatrix}
+		1\s\\
+		0\s \\
+	\end{bmatrix}+
+	\beta
+	\begin{bmatrix}
+	0\s\\
+	1\s \\
+	\end{bmatrix}=
+	\begin{bmatrix}
+	0\s\\
+	0\s \\
+	\end{bmatrix}$
+	\end{center}
+	
+	\noindent Ez két egyenletre bontható:
+	
+	\begin{center}
+		$\left.\begin{matrix}
+		1\alpha+0\beta = 0\s \\
+		0\alpha+1\beta = 0\s \\
+	\end{matrix}\right\} \Rightarrow
+	\begin{matrix}
+		\alpha=0\s\\
+		\beta=0\s\\
+	\end{matrix}$
+	\end{center}
+	
+	\noindent Ezzel beláttuk hogy
+	$\begin{bmatrix}
+		1\s\\
+		0\s \\
+	\end{bmatrix}$ és$
+	\begin{bmatrix}
+		0\s\\
+		1\s \\
+	\end{bmatrix}$ L, hisz lineáris kombinációjuk csak akkor lehet \0-val egyenlő, ha a lineáris kombinációjuk triviális. Ha olyan eredményt kaptunk volna (nyilván más vektorokkal vett \0 eredményű lineáris kombinációnál) mint pl. $\alpha=-\beta$, akkor leolvasható hogy mindaddig amíg $\alpha~\beta$ ellentetje, az eredmény \0 lesz, így lineárisan összefüggők (pl. 
+	$\begin{bmatrix}
+		1\s\\
+		0\s \\
+	\end{bmatrix}$ és 
+	$\begin{bmatrix}
+	1\s\\
+	0\s \\
+	\end{bmatrix}$-ből ugyanezzel a módszerrel levezethető hogy $\alpha=-\beta$).
+	
+	Fontos megjegyezni: attól még hogy egy vr. triviálisan elő \emph{tudja} állítani a nullvektort, még nem lesz feltétlenül L. Így $\m_1=\ldots=\m_k=0$ és $\a_1,\ldots, \a_k \in \Rn$~esetén  \begin{center}
+		$\m_1\a_1+\ldots+\m_k\a_k=\0 \stackrel{\text{\textit{ált.}}}{\not\Rightarrow}\a_1,\ldots, \a_k $~L,
+	\end{center}
+	\noindent hisz minden triviális lineáris kombináció \0-t eredményez.
+	
+	DEFINÍCIÓ: $V\leqq\Rn$~esetén legyen $\b _1, \dots, \b _k \in
+	V$. A $\b
+	_1, \dots, \b _k$ BÁZIS (rövidítve: B) $V$-ben, ha L és a $V$
+	minden vektorát elõállítják lineáris kombinációjukként.  
+	\medskip
+	
+	\noindent Érdemes tisztázni pár dolgot előre:
+	\begin{compactitem}
+		\item A többesszám hiány csalóka (bázisok helyett bázis), de itt egy \emph{vektorrendszer} alkot bázist, nem (feltétlenül) egy vektor.
+		\item Azt hogy mindent előállít, mondhatjuk úgy is, hogy veszünk egy tetszőleges vektort $V$-ből, és ha $\b _1, \dots, \b _k$ B, akkor ez az előbb említett vektor mindenképpen felírható $\b _1, \dots, \b _k$ lineáris kombinációjával.
+	\end{compactitem}
+	Egy jó magyarázat arra, mitől lesz bázis a bázis: Vegyünk magunk elé 3 darab (lehetőleg nem 0 hosszúságú) tollat, és ebből kettőt rekjunk magunk elé az asztalunkra úgy, hogy merőlegesek legyeneke egymásra. Ekkor olyasvalami kreáltunk, amely a derékszögő koordinátarendszerhez hasonlít: $x$ tengely az egyik, $y$ tengely a másik toll.
+	
+	\begin{center}
+		\emph{Kérdés:} Bázist alkot-e ez a két vektor (toll) az asztal síkjában? 
+	\end{center}
+	
+	Válasz: Igen! Hiszen a harmadik tollat bárhova is helyezzük,  a másik két toll ,,megnyújtásával/zsugorításával, megfordításával és összeadásával'' megkaphatjuk azt. Mégha az asztal síkján egy millió kilométer hosszú vektort is rakunk, azt is ki tudjuk fejezni az eredeti két toll lineáris kombinációjával.\\
+	Továbbá megállapítható, hogy a két ,,vektor'' csak triviális lineáris kombinációval állítják elő a nullvektort: ha bármely mász számmal szoroznánk bármelyiket is, a végeredmény garantáltan nem lenne \0.
+	
+	\medskip
+	Most kicsit forgassuk el az \emph{egyik} tollat, úgy hogy ne legyen már derékszög de még ne is legyenek párhuzamosak egymással.
+	
+	\begin{center}
+		\emph{Kérdés:} Bázist alkot-e ez a két vektor az asztal síkjában?
+	\end{center}
+	
+	Válasz: Igen! Hisz az előbb említett tulajdonságot nem vesztettük el, \emph{igaz}, ugyanazt a vektort más lineáris kombinációval fogunk csak tudni felírni, de továbbra is megtehetjük, és ez a rendszer továbbra is L.
+	
+	Most növeljük meg a bezárt szögüket annyira, hogy a két toll egymással párhuzamos legyen, és ellenétes irányú.
+	\begin{center}
+		\emph{Kérdés:} Bázist alkot-e ez a két vektor az asztal síkjában?
+	\end{center}
+	
+	\emph{Válasz:} Nem! Bárhogyan adjuk össze a két ,,vektort'', azok csak a saját vonalukban lévő vektorokat fogják tudni előállítani. Továbbá, ha úgy nyújtjuk és adjuk össze őket, hogy a két ,,vektor'' hossza egyenlő, de irányuk ellentétes, akkor nullvektort kapunk, vagyis lineárisan összefüggő is a rendszer.
+	
+	Milyen lehet egy vektorrendszer, melynél egyértelmű, vagy \emph{triviális} az hogy bázist alkot?
+	Példaképp lehet akár ez is:
+	
+	{\centering 
+		$\e _1=\begin{bmatrix}
+		1\s \\
+		0\s \\
+		\vdots\\
+		0\s \\
+		\end{bmatrix},
+		\e _2=\begin{bmatrix}
+		0\s \\
+		1\s \\
+		\vdots\\
+		0\s \\
+		\end{bmatrix}, \dots ,
+		\e _n=\begin{bmatrix}
+		0\s \\
+		0\s \\
+		\vdots\\
+		1\s \\
+		\end{bmatrix} \in \Rn$.
+		\par}
+	
+	\noindent Itt könnyen látható, hogy $\e_1, \e_2, \ldots, \e_n$ L, továbbá minden vektort elő fog tudni állítani $\Rn$-ben. Ezt a vektorrendszert \emph{triviális bázisnak} nevezzük, és általában $\e_1, \e_2, \ldots, \e_n$ módon nevezzük elemeit.
+	
+	Szánjunk 1 percet arra, hogy belássuk hogy ez valóban L:
+	
+	{\centering
+		$\e _1=\begin{bmatrix}
+	1\s \\
+	0\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix},
+	\e _2=\begin{bmatrix}
+	0\s \\
+	1\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix}, \dots ,
+	\e _n=\begin{bmatrix}
+	0\s \\
+	0\s \\
+	\vdots\\
+	1\s \\
+	\end{bmatrix} \in \Rn $ és $\l_1, \l_2, \ldots \l_n \in \R$ esetén:
+	
+	$\l_1\begin{bmatrix}
+	1\s \\
+	0\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix}+
+	\l_2\begin{bmatrix}
+	0\s \\
+	1\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix}+ \dots+
+	\l_n\begin{bmatrix}
+	0\s \\
+	0\s \\
+	\vdots\\
+	1\s \\
+	\end{bmatrix}=
+	\begin{bmatrix}
+	0\s \\
+	0\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix} \Leftrightarrow$
+	
+	$\begin{bmatrix}
+	\l_1\s \\
+	0\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix}+
+	\begin{bmatrix}
+	0\s \\
+	\l_2\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix}+ \dots+
+	\begin{bmatrix}
+	0\s \\
+	0\s \\
+	\vdots\\
+	\l_n\s \\
+	\end{bmatrix}=
+	\begin{bmatrix}
+	0\s \\
+	0\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix} \quad \Leftrightarrow$
+	
+	$\begin{bmatrix}
+	\l_1\s \\
+	\l_2\s \\
+	\vdots\\
+	\l_n\s \\
+	\end{bmatrix}=
+	\begin{bmatrix}
+	0\s \\
+	0\s \\
+	\vdots\\
+	0\s \\
+	\end{bmatrix} \Leftrightarrow $
+	
+	\medskip
+	$\l_1=\l_2=\ldots=\l_n=0.$
+	\par}
+	
+	Ezzel beláttuk hogy a $\e_1, \ldots ,\e_n$ lineárisan független (és nyilvánvalóan bázis is, ezeket hamarosan belátjuk az elkövetkezendő előadásokban).
+	
+	\pagebreak
+	\begin{center}
+		ÖSSZEFOGLALÁS:
+	\end{center}
+	
+	
+		 \noindent A középsikolai vektorokkal kényelmes számolni, így egy ehhez hasonló struktúrát alkottunk.\\
+		 Ez a struktúra a vektortér névre hallgat, 2 művelettel rendelkezik: összeadás és skaláris szorzás, melynek 10 tulajdonságát kigyűjtöttük.\\
+		 Definiáltuk a vektortér halmazának speciális részhalmazait is, az altereket.\\
+		 Definiáltunk a lineáris kombinációt, lineáris összefüggőséget és függetlenséget.\\
+		 Definiáltuk a bázist, és egy általános példát is láttunk rá: a triviális bázist.
+	
+\end{document}

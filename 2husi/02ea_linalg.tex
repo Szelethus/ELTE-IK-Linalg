@@ -1,0 +1,402 @@
+\documentclass[a4paper,11.5pt]{article}
+\usepackage[normalem]{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\PassOptionsToPackage{defaults=hu-min}{magyar.ldf}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
+\usepgfplotslibrary{fillbetween}
+\usepackage[magyar]{babel}
+\usepackage{amsmath, amsthm,amssymb,paralist,array, ellipsis, graphicx, float, bigints,tikz}
+%\usepackage{marvosym}
+
+\makeatletter
+\renewcommand*{\mathellipsis}{%
+	\mathinner{%
+		\kern\ellipsisbeforegap%
+		{\ldotp}\kern\ellipsisgap
+		{\ldotp}\kern\ellipsisgap%
+		{\ldotp}\kern\ellipsisaftergap%
+	}%
+}
+\renewcommand*{\dotsb@}{%
+	\mathinner{%
+		\kern\ellipsisbeforegap%
+		{\cdotp}\kern\ellipsisgap%
+		{\cdotp}\kern\ellipsisgap%
+		{\cdotp}\kern\ellipsisaftergap%
+	}%
+}
+\renewcommand*{\@cdots}{%
+	\mathinner{%
+		\kern\ellipsisbeforegap%
+		{\cdotp}\kern\ellipsisgap%
+		{\cdotp}\kern\ellipsisgap%
+		{\cdotp}\kern\ellipsisaftergap%
+	}%
+}
+\renewcommand*{\ellipsis@default}{%
+	\ellipsis@before
+	\kern\ellipsisbeforegap
+	.\kern\ellipsisgap
+	.\kern\ellipsisgap
+	.\kern\ellipsisgap
+	\ellipsis@after\relax}
+\renewcommand*{\ellipsis@centered}{%
+	\ellipsis@before
+	\kern\ellipsisbeforegap
+	.\kern\ellipsisgap
+	.\kern\ellipsisgap
+	.\kern\ellipsisaftergap
+	\ellipsis@after\relax}
+\AtBeginDocument{%
+	\DeclareRobustCommand*{\dots}{%
+		\ifmmode\@xp\mdots@\else\@xp\textellipsis\fi}}
+\def\ellipsisgap{.1em}
+\def\ellipsisbeforegap{.05em}
+\def\ellipsisaftergap{.05em}
+\makeatother
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks = true	
+}
+
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\ctg}{ctg}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Th}{th}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\arsh}{arsh}
+\DeclareMathOperator{\arch}{arch}
+\DeclareMathOperator{\arth}{arth}
+\DeclareMathOperator{\arcth}{arcth}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\arc}{arc}
+\DeclareMathOperator{\arctg}{arc tg}
+\DeclareMathOperator{\arcctg}{arc ctg}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\begin{document}
+	%%%%%%%%%%%RÖVIDÍTÉSEK%%%%%%%%%%
+	\setlength\parindent{0pt}
+	\def\a{\textbf{a}}
+	\def\b{\textbf{b}}
+	\def\N{\hskip 10 true mm}
+	\def\a{\textbf{a}}
+	\def\b{\textbf{b}}
+	\def\c{\textbf{c}}
+	\def\d{\textbf{d}}
+	\def\x{\textbf{x}}
+	\def\e{\textbf{e}}
+	\def\gg{$\gamma$}
+	\def\vi{\textbf{i}}
+	\def\jj{\textbf{j}}
+	\def\kk{\textbf{k}}
+	\def\fh{\overrightarrow}
+	\def\l{\lambda}
+	\def\m{\mu}
+	\def\v{\textbf{v}}
+	\def\0{\textbf{0}}
+	\def\s{\hspace{0.2mm}\vphantom{\beta}}
+	\def\Z{\mathbb{Z}}
+	\def\Q{\mathbb{Q}}
+	\def\R{\mathbb{R}}
+	\def\C{\mathbb{C}}
+	\def\N{\mathbb{N}}
+	\def\Rn{\mathbb{R}^{n}}
+	\def\Ra{\overline{\mathbb{R}}}
+	\def\sume{\displaystyle\sum_{n=1}^{+\infty}}
+	\def\sumn{\displaystyle\sum_{n=0}^{+\infty}}
+	\def\biz{\emph{Bizonyítás:\ }}
+	\def\narrow{\underset{n\rightarrow+\infty}{\longrightarrow}}
+	\def\limn{\displaystyle\lim_{n\to +\infty}}
+	%	\def\definition{\textbf{Definíció:\ }}
+	%	\def\theorem{\textbf{Tétel:\ }}
+	%\def\note{\emph{Megjegyzés:\ }}
+	%\def\example{\textbf{Példa:\ }} 
+	
+	\theoremstyle{definition}
+	\newtheorem{theorem}{Tétel}[subsubsection]
+	
+	\theoremstyle{definition}
+	\newtheorem{definition}[theorem]{Definíció}
+	\newtheorem{example}[theorem]{Példa}
+	\newtheorem{exercise}[theorem]{Házi feladat}
+	\newtheorem{note}[theorem]{Megjegyzés}
+	\newtheorem{task}[theorem]{Feladat}
+	\newtheorem{revision}[theorem]{Emlékeztető}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
+	\begin{flushright}
+		
+		Husi kidolgozása (\LaTeX)
+		
+	\end{flushright}
+	
+	\begin{center}
+		
+		Lineáris algebra (A, B, C)\\
+		
+		2. előadás
+		
+	\end{center}
+	
+	Az előző előadásban említettem, hogy szó lesz a különböző matematikai jelekről, és arról, hogyan kell helyesen kiolvasni egy tételt:
+	
+	\smallskip
+	$\Leftarrow, \Rightarrow$: Implikáció, paraszti nyelven ,,Akkor''. A jelentés egyik oldalából következik a másik.
+	
+	Pl.: Egy síkidom négyzet. $\Rightarrow$ Ez a síkidom négyszög.
+	
+	\textit{Minden négyzet négyszög, de nem minden négyszög négyzet.}
+	
+	\smallskip
+	$\Leftrightarrow$: Ekvivalencia, gyakorlatilag a logikai kijelentések egyenlősége.
+	
+	Pl.: $a \in \Z$ páros $\Leftrightarrow$ $a$ osztható 2-vel.
+	
+	\textit{Minden páros szám osztható 2vel, és minden 2vel osztható szám páros.}
+	
+	\smallskip
+	És most következzen az első komolyabb tételünk:
+	\begin{theorem}
+	$\b_1, \b_2, \ldots , \b_k$\ B\ $V(\leqq \R^n)$-ben, $\a \in V \Rightarrow \exists! \alpha_1, \alpha_2, \ldots, \alpha_k \in \R :$
+	$\a=\alpha_1\b_1+\alpha_2\b_2+\ldots+\alpha_k\b_k$.
+	\end{theorem}
+	
+	\textit{$\b_1, \b_2, \ldots , \b_k$ {legyen bázis $\R^n$ egy alterében, melynek neve legyen $V$. Vegyünk még egy vektort $V$-ből, mely legyen }$\a$. {Ekkor egyértelműen létezik $\alpha_1, \alpha_2, \ldots, \alpha_k$ valós számok melyekkel elő lehet állítani }\a\ {vektort ebből a bázisból}}.\\
+	
+	   Bizonyítás: Két dolgot kell belátni: a létezés, és az egyértelműség. Ebből az első adódik abból hogy,  $\b_1, \b_2, \ldots , \b_k$ bázis. Az egyértelműség egy kis trükkel belátható: Legyen
+	\begin{center}
+		$\a=\alpha_1'\b_1+\alpha_2'\b_2+\ldots+\alpha_k'\b_k$ \quad ($\alpha_1',\ldots,\alpha_k'\in\R$),
+		
+		$\a=\alpha_1''\b_1+\alpha_2''\b_2+\ldots+\alpha_k''\b_k$ \quad ($\alpha_1'',\ldots,\alpha_k''\in\R$).
+	\end{center}
+	
+	A tétel szerint \a-t $\b_1,\ldots\b_k$-val csak ,,egyféleképpen'' tudjuk előállítani, azaz a fenti két egyenletnek azonosnak kell lennie. Ez a mi szempontunkból azt jelenti, hogy minden egy vesszős együttható egyenlő a két vesszős megfelelőjével. Ezt formálisan így is kifejezhetjük: $\alpha_i'=\alpha_i''\quad (i=1\ldots k)$. Vonjuk ki a két egyenletet egymásból:
+	
+	\begin{center}
+		$\0=(\alpha_1'-\alpha_1'')\b_1+(\alpha_2'-\alpha_2'')\b_2+\ldots+(\alpha_k'-\alpha_2'')\b_k$
+	\end{center}
+	
+	   Mivel $\b_1, \b_2, \ldots , \b_k$ bázis, így L is, és egy L vektorrendszer csak triviálisan tudja előállítani \0-t, így minden zárójeles tagnak egyenlőnek kell lennie 0-val:
+	
+	\begin{center}
+		$\begin{matrix}
+			(\alpha_1'-\alpha_1'')=0&\Rightarrow&\alpha_1'=\alpha_1''\\
+			(\alpha_2'-\alpha_2'')=0&\Rightarrow&\alpha_2'=\alpha_2''\\
+			\vdots&&\vdots\\
+			(\alpha_k'-\alpha_k'')=0&\Rightarrow&\alpha_k'=\alpha_k''\\
+		\end{matrix}$
+	\end{center}
+	
+	Ezzel a tételt bebizonyítotuk. $\blacksquare$ 
+	
+	A fenti bizonyítás a hivatalos jegyzetben 3 darab sor -- itt a cél az hogy elsajátítsuk a tétel helyes kiolvasásának készségét, és megértsük a tételek bizonyításának gondolatmenetét. Vizsgáljuk meg ennek a tételnek a megfordítását:\\
+	
+	\begin{theorem}
+		Ha $V\leqq \Rn$ ~és $ \b_1, \b_2, \ldots , \b_k \in V$ olyan, hogy $\forall \a \in V\\
+		\exists! \alpha_1, \alpha_2, \ldots, \alpha_k \in \R: \a =\alpha_1\b_1+\alpha_2\b_2+\ldots+\alpha_k\b_k \Rightarrow \b_1, \b_2, \ldots , \b_k$ bázis $V$-ben.
+	\end{theorem}
+	
+	\emph{Legyen $V$ $\Rn$ egy altere, és legyen $ \b_1, \b_2, \ldots , \b_k$ ezen altérnek elemei. Ha minden $V$-béli $\a$ vektorra teljesül, hogy $ \b_1, \b_2, \ldots , \b_k$ egyértelműen elő tudja állítani lineáris kombinációval (azaz egyértelműen létezik minden \a-hoz olyan $\alpha_1, \alpha_2, \ldots, \alpha_k$ valós számok, hogy $\a=\alpha_1\b_1+\alpha_2\b_2+\ldots+\alpha_k\b_k$), akkor $ \b_1, \b_2, \ldots , \b_k$ bázis.}
+	
+	\smallskip
+	Bizonyítás: Ismét 2 dolgot kell belátnunk: Ha $ \b_1, \b_2, \ldots , \b_k$ bázis, akkor egyrészt minden $V$-beli vektort elő tud állítani egyértelműen lineáris kombinációval, másrészt L is. Az előállítás következik a tétel feltételéből, L pedig abból, hogyha minden vektort egyértelműen állít elő, akkor ez \0-ra is teljesül, és mivel $\0=0\b_1+0\b_2+\ldots+0\b_k$, az egyértelműség miatt más előállítása \0-nak e vektorrendszerből nem lehet. Ezzel bebizonyítottuk a tételt. $\blacksquare$
+	
+	A következő tételünk nagyon hasznos lesz a további munkánk folyamán, számtalanszor fogjuk alkalmazni. Még ha bonyolultnak is tűnik, számos későbbi tétel megértéséhez kulcsfontosságú lehet. Továbbá a ez egy un. \textit{konstruktív bizonyítás}, azaz nemcsak a tétel helyességét látjuk be, azt is megmutatjuk, hogy hogyan lehet magát az algoritmust végrehajtani.
+	
+	\begin{theorem}
+		(ELEMI BÁZIS TRANSZFORMÁCIÓ): Legyen $V \leqq \Rn, \b_1, \ldots, \b_k$ bázis $V$-ben, $\a \in V$, $\a = \alpha_1\b_1+\ldots+\alpha_k\b_k$, $i$ rögzített, $1\leqq i \leqq k$. Ekkor:
+		\[ \b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k \text{ bázis } V \text{-ben} \quad\Leftrightarrow \quad \alpha_i\not=0. \]
+	\end{theorem}\textit{Legyenek adottak az alábbi feltételek:
+	\begin{compactitem}
+		\item $V~\Rn$\ altere,
+		\item $\b_1, \ldots, \b_k$ bázis $V$-ben,
+		\item \a\ $\in V$, és $\b_1, \ldots, \b_k$-vel így írható fel: $\a = \alpha_1\b_1+\ldots+\alpha_k\b_k$,
+		\item Adott nekünk egy $i$ egész számunk, melyre teljesül hogy $1\leqq i \leqq k$.
+	\end{compactitem}
+	Ekkor ha $\b_1, \ldots, \b_k$ bázis $i$-edik elemét kicseréljük \a-ra, és továbbra is bázist alkot a kapott vektorrendszer, akkor $\alpha_i$ (\a\ vektor $\b_1, \ldots, \b_k$ bázis szerinti lineáris kombinációban) nem nulla, és amennyiben $\alpha_i$ nem nulla, $\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k$ bázis.}\\
+
+	\hspace*{-2cm}
+	\begin{tikzpicture}
+		\draw[help lines, color=gray!30, dashed] (-0.9,-0.9) grid (3.9,3.9);
+		\draw[->,ultra thick] (-1,0)--(4,0) node[right]{$x$};
+		\draw[->,ultra thick] (0,-1)--(0,4) node[above]{$y$};
+		
+		\draw[->, thick] (1,1) -- node [left = 1mm] {$\b_1$} (2,3);
+		\draw[->, thick] (1,1) -- node [below = 1mm] {$\b_2$} (3,1);
+	\end{tikzpicture}
+	\begin{tikzpicture}
+		\draw[help lines, color=gray!30, dashed] (-0.9,-0.9) grid (3.9,3.9);
+		\draw[->,ultra thick] (-1,0)--(4,0) node[right]{$x$};
+		\draw[->,ultra thick] (0,-1)--(0,4) node[above]{$y$};
+		
+		\draw[->, thick] (1,1) -- node [left = 1mm] {$\b_1$} (2,3);
+		\draw[->, thick] (1,1) -- node [below = 1mm] {$\a$} (2,2);
+	\end{tikzpicture}
+	\begin{tikzpicture}
+		\draw[help lines, color=gray!30, dashed] (-0.9,-0.9) grid (3.9,3.9);
+		\draw[->,ultra thick] (-1,0)--(4,0) node[right]{$x$};
+		\draw[->,ultra thick] (0,-1)--(0,4) node[above]{$y$};
+		
+		\draw[->, thick] (1,1) -- node [left = 1mm] {$\b_1$} (2,3);
+		\draw[->, thick] (1,1) -- node [below = 1mm] {$\a$} (0.5,0);
+		\draw (0.9,1.1) -- (1.1,0.9);
+	\end{tikzpicture}
+	
+	{\centering Az első képen látható egy kételemű bázis, $\b_1,\b_2$. Legyen $i=2$ (azaz rögzítjük $i$-t 2-re), és keressünk egy alkalmas $\a$-t, melyre $\a=\lambda_1\b_1+\lambda_2\b_2$ esetén $\lambda \not=0$. A második képen $\a=\frac{1}{2}\b_1+\frac{1}{4}\b_2$, így kicserélhetjük $\b_2$-t \a-ra, úgy, hogy a vektorrendszer továbbra is bázist alkosson. A harmadik képen $\a=-\frac{1}{2}\b_1+0\b_2$, láthatóan így a csere nem vezet bázishoz. \par}	
+	
+	Bizonyítás: Dolgozzunk először az állítás második felével, azaz a tétel felételei alapján lássuk be, hogy \[\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k \text{ bázis} \quad\Rightarrow \quad \alpha_i\not=0.\]
+	Indirekt módon (azaz az állítás ellentettjéről lássuk be hogy nem igaz), tegyük fel, hogy $\alpha_i=0$, és $\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k$ bázis. Így:
+	
+	\begin{center}
+		$\begin{matrix}
+			\a&=&\alpha_1\b_1+\ldots+\alpha_i\b_i+\ldots+\alpha_k\b_k\\
+			\a&=&\alpha_1\b_1+\ldots+0+\ldots+\alpha_k\b_k\\
+			\0&=&\alpha_1\b_1+\ldots+(-1)\a+\ldots+\alpha_k\b_k
+		\end{matrix}$
+	\end{center}
+	
+	Itt ellentmondásra jutottunk, hisz abból indultunk ki hogy $\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k$ bázis, de egy \emph{nem triviális} lineáris kombinációval előállítják \0-t (hisz \a\  együtthatója, $-1\not=0)$. Ezzel a tétel ezen részét bebizonyítottuk.
+	
+	\medskip
+	Most az állítás második fele:
+	\[\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k \text{ bázis} \quad\Leftarrow \quad \alpha_i\not=0.\]
+	
+	Mint mindig, 2 dolgot kell belátni ahhoz hogy egy vektorrendszer bázis legyen: lineáris függetlenség és hogy minden vektort elő tud állítani az alteren belül. Ne feledjük el, itt támaszkodhatunk arra hogy $\alpha_i\not=0$.
+	
+	\smallskip
+	\emph{1. Mindent elő tud állítani:} Legyen $\x \in V$ tetszőleges, mutassuk meg, hogy $\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k$ vektorrendszerrel előállítható!
+	
+	\begin{center}
+		$\begin{gathered}
+			\x=x_1\b_1+\ldots+x_i\b_i+\ldots+ x_k\b_k,\quad (x_1,\ldots x_k\in\R)\\
+			\a = \alpha_1\b_1+\ldots+\alpha_i\b_i+\ldots+\alpha_k\b_k,\quad (\alpha_1,\ldots\alpha_k\in\R).\\
+		\end{gathered}$
+	\end{center}
+	
+	Kiemelve a második egyenletből $\b_i$-t:
+		
+	\begin{center}
+		$\begin{gathered}
+			 \b_i=-\frac{\alpha_1}{\alpha_i}\b_1-\ldots+\frac{1}{\alpha_i} \a-\ldots-\frac{\alpha_k}{\alpha_i}\b_k
+		\end{gathered}$
+	\end{center}
+	
+	Behelyettesítve az első egyenletbe:
+	
+	\begin{center}
+		$\begin{gathered}
+			\x=x_1\b_1+\ldots+x_i\left(-\frac{\alpha_1}{\alpha_i}\b_1-\ldots+\frac{1}{\alpha_i} \a-\ldots-\frac{\alpha_k}{\alpha_i}\right)+\ldots+ x_k\b_k\\
+			\x=\left(x_1-\frac{x_i}{\alpha_i}\alpha_1\right)\b_1+\ldots+\frac{x_i}{\alpha_i} \a+\ldots+\left(x_k-\frac{x_i}{\alpha_i}\alpha_k\right)\b_k.
+		\end{gathered}$
+	\end{center}
+	
+	Ezzel beláttuk, hogy \x-et nem csak $\b_1,\ldots,\b_{i-1},\b_i,\b_{i+1},\ldots,\b_k$ bázissal, de $\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k$ bázissal is előállítható, sőt, még azt is láttuk, hogyan változnak majd az együtthatók egy ilyen vektorcserés lépés után. Ha
+	\begin{center}
+		$\x=x_1\b_1+\ldots+x_i\b_i+\ldots+ x_k\b_k,\quad (x_1,\ldots x_k\in\R),$\\
+		$\x=y_1\b_1+\ldots+y_i\a+\ldots+ y_k\b_k,\quad (y_1,\ldots y_k\in\R),$
+	\end{center}
+	azaz \x\ ha az eredeti vektorrendszerrel $x_1,\ldots,x_k$ (mely B is) együtthatókkal állítható elő, és $\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k$ vektorrendszerrel meg $y_1,\ldots,y_k$ együtthatókkal akkor
+	\begin{center}
+		$\displaystyle y_i=\frac{x_i}{\alpha_i},$ \quad $t\not=i$ esetén pedig \quad $\displaystyle y_t=x_t-\frac{x_i}{\alpha_1}\alpha_i.$
+	\end{center}
+	Ez az első egyenletbe történő behelyettesítés után jól is látható.
+	
+	\smallskip
+	\emph{2. Lineáris függetlenség:} Legyen $\m_1,\ldots,\mu_k \in \R$. Ekkor tekintsük $\b_1,\ldots,\a,\ldots,\b_k$ egy olyan lineáris kombinációját, mely \0-t eredményez. Akkor lesz ez a vektorrendszer L, ha rendre minden $\m$-s tag egyenlő 0-val, és más értéket nem vehet fel.
+	\[\m_1\b_1+\ldots+\m_i\a_i+\ldots+\m_k\b_k=\0\]
+	Még továbbra is teljesül, hogy $\a = \alpha_1\b_1+\ldots+\alpha_k\b_k$, így \a-t a fenti egyenletbe helyettesítve:
+	
+	\begin{center}
+		$\m_1\b_1+\ldots+\m_i(\alpha_1\b_1+\ldots+\alpha_k\b_k)+\ldots+\m_k\b_k=\0$\\
+		$(\m_1+\m_i\alpha_1)\b_1+\ldots+(\m_i\alpha_i)\b_i+\ldots+(\m_k+\m_i\alpha_k)\b_k=\0$
+	\end{center}
+	(Figyeljük meg, hogy az összeadás minden tagjában szerepel $\m_i$!) Mivel $\b_1,\ldots,\b_i,\ldots,\b_k$ bázis, így minden zárójeles tag nulla, így pont az összeadás $i$-edik eleméből kiolvasható hogy $\m_i\alpha_i=0,\ \alpha_i\not=0 \Rightarrow \mu_i=0$. Ez máris beindítja a láncreakciót:
+	
+	\begin{center}
+		$(m_1+0\alpha_1)\b_1+\ldots+(0\alpha_i)\b_i+\ldots+(\m_k+0\alpha_k)\b_k=\0$\\
+		$\m_1\b_1+\ldots+0\b_i+\ldots+\m_k\b_k=\0$,\\
+	\end{center}
+	   így $\m_1=\m_2=\ldots=\m_k=0$. Ezzel beláttuk hogy $\b_1,\ldots,\a,\ldots,\b_k$ valóban bázis, és a tételt bebizonyítottuk. $\blacksquare$
+	
+	Ennek a tételnek a bizonyítási módszerét sokszor be lehet vetni, így érdemes alaposan elmélyedni benne. A következő előadásban megtanuljuk, hogyan lehet gyakorlatban kényelmesen alkalmazni ezt a tételt.
+	
+	Most kerüljön tisztázásra a komponens/koordináta dolog.
+	
+	DEFINÍCIÓ: $V\leqq \Rn, \b_1,\ldots,\b_k$ bázis $V$-ben, $\a \in V, \a = \alpha_1\b_1+\ldots+\alpha_k\b_k$ esetén azt mondjuk, hogy az \a~koordinátái $\b_1,\ldots,\b_k$ bázisban $\alpha_1, \ldots, \alpha_k$. Jelölése:
+	
+	\begin{center}
+		$[\a]_\b=[\a]_{\b_1,\ldots,\b_k}=
+		\begin{bmatrix}
+			\alpha_1\s\\
+			\alpha_2\s\\
+			\vdots\\
+			\alpha_k\s
+		\end{bmatrix}\in\R^k.$
+	\end{center}
+	
+	Ez azt jelenti, hogyha valaha a koordináta kifejezést használjuk, meg kell adnunk azt is, milyen bázisban értelmezzük azt. Vegyünk egy gyors példát: legyen $\a=
+		\begin{bmatrix}
+			4\s\\
+			5\s
+		\end{bmatrix}$.\\
+		$\a=4
+		\begin{bmatrix}
+			1\s\\
+			0\s
+		\end{bmatrix}+5
+		\begin{bmatrix}
+			0\s\\
+			1\s
+		\end{bmatrix}$, ebben a bázisban \a\ koordinátái 5 és 4, míg
+	$\a=2
+	\begin{bmatrix}
+		2\s\\
+		0\s
+	\end{bmatrix}+1
+	\begin{bmatrix}
+		0\s\\
+		5\s
+	\end{bmatrix}$,
+	   azaz
+	$\begin{bmatrix}
+		2\s\\
+		0\s
+	\end{bmatrix},
+	\begin{bmatrix}
+		0\s\\
+		5\s
+	\end{bmatrix}$
+	   bázisban a koordinátái 2 és 1.
+	
+	Így felírhatjuk az elemi bázistranszformációhoz egy táblázatot, melyből kiovlasható hogyan változnak a koordináták a bázis megváltozásának következtében.
+	
+	\begin{center}
+		\begin{tabular}{c|cc||c|cc}
+			$\alpha_i\not=0$&\a&\x&&\a&\x\\
+			\hline
+			$\b_1$&$\alpha_1$&$x_1$&$\b_1$&0&$x_1-(x_i/\alpha_i)\alpha_1$\\
+			\vdots&\vdots&\vdots&\vdots&\vdots&\vdots\\
+			$\b_i$&$\alpha_i$&$x_i$&$\a$&1&$x_i/\alpha_i$\\
+			\vdots&\vdots&\vdots&\vdots&\vdots&\vdots\\
+			$\b_k$&$\alpha_k$&$x_k$&$\b_k$&0&$x_k-(x_i/\alpha_i)\alpha_k$\\
+		\end{tabular}
+	\end{center}
+	
+	   A táblázat helyes kiolvasása: ,,a második oszlopban látom, hogy \a\  vektornak mik a koordinátái $\b_1,\ldots,\b_k$ bázisban, és ezalapján felírhatom, hogy $\a = \alpha_1\b_1+\ldots+\alpha_k\b_k$.''
+	
+	   A táblázat első fele az eredeti $\b_1,\ldots,\b_k$ bázisban mutatja a koordinátákat, a második fele az elemi bázistranszformáció után, melyben az $\b_i$-t \a-ra cseréljük. Az hogy miért épp ezek lesznek a koordináták, fentebb megfigyelhető az EBT bizonyításában.
+	
+	Most ideje letudni az asszociativitás bizonyítását véges sok vektor összegénél.
+	
+	*otthon van a tétel és bizonyítása*
+	
+	
+	
+\end{document}
