@@ -276,11 +276,11 @@
 	\begin{center}
 		$\begin{gathered}
 			\x=x_1\b_1+\ldots+x_i\b_i+\ldots+ x_k\b_k,\quad (x_1,\ldots x_k\in\R)\\
-			\a = \alpha_1\b_1+\ldots+\alpha_i\b_i+\ldots+\alpha_k\b_k,\quad (\alpha_1,\ldots\alpha_k\in\R).\\
+			\a = \alpha_1\b_1+\ldots+\alpha_i\b_i+\ldots+\alpha_k\b_k.\\
 		\end{gathered}$
 	\end{center}
 	
-	Kiemelve a második egyenletből $\b_i$-t:
+	Kiemelve a második egyenletből $\b_i$-t (ezt megtehetjük, hisz a tétel feltételeiben szerepel hogy $\alpha_i\not=0$):
 		
 	\begin{center}
 		$\begin{gathered}
@@ -297,12 +297,12 @@
 		\end{gathered}$
 	\end{center}
 	
-	Ezzel beláttuk, hogy \x-et nem csak $\b_1,\ldots,\b_{i-1},\b_i,\b_{i+1},\ldots,\b_k$ bázissal, de $\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k$ bázissal is előállítható, sőt, még azt is láttuk, hogyan változnak majd az együtthatók egy ilyen vektorcserés lépés után. Ha
+	Ezzel beláttuk, hogy \x-et nem csak $\b_1,\ldots,\b_{i-1},\b_i,\b_{i+1},\ldots,\b_k$ bázissal, de $\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k$ vektorrendszerrel is előállítható, sőt, még azt is láttuk, hogyan változnak majd az együtthatók az \x-et adó lineáris kombinációban egy ilyen vektorcsere után. Ha
 	\begin{center}
 		$\x=x_1\b_1+\ldots+x_i\b_i+\ldots+ x_k\b_k,\quad (x_1,\ldots x_k\in\R),$\\
 		$\x=y_1\b_1+\ldots+y_i\a+\ldots+ y_k\b_k,\quad (y_1,\ldots y_k\in\R),$
 	\end{center}
-	azaz \x\ ha az eredeti vektorrendszerrel $x_1,\ldots,x_k$ (mely B is) együtthatókkal állítható elő, és $\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k$ vektorrendszerrel meg $y_1,\ldots,y_k$ együtthatókkal akkor
+	azaz \x\ ha az eredeti bázissal $x_1,\ldots,x_k$ együtthatókkal állítható elő, és $\b_1,\ldots,\b_{i-1},\a,\b_{i+1},\ldots,\b_k$ vektorrendszerrel meg $y_1,\ldots,y_k$ együtthatókkal akkor
 	\begin{center}
 		$\displaystyle y_i=\frac{x_i}{\alpha_i},$ \quad $t\not=i$ esetén pedig \quad $\displaystyle y_t=x_t-\frac{x_i}{\alpha_1}\alpha_i.$
 	\end{center}
@@ -317,7 +317,7 @@
 		$\m_1\b_1+\ldots+\m_i(\alpha_1\b_1+\ldots+\alpha_k\b_k)+\ldots+\m_k\b_k=\0$\\
 		$(\m_1+\m_i\alpha_1)\b_1+\ldots+(\m_i\alpha_i)\b_i+\ldots+(\m_k+\m_i\alpha_k)\b_k=\0$
 	\end{center}
-	(Figyeljük meg, hogy az összeadás minden tagjában szerepel $\m_i$!) Mivel $\b_1,\ldots,\b_i,\ldots,\b_k$ bázis, így minden zárójeles tag nulla, így pont az összeadás $i$-edik eleméből kiolvasható hogy $\m_i\alpha_i=0,\ \alpha_i\not=0 \Rightarrow \mu_i=0$. Ez máris beindítja a láncreakciót:
+	(Figyeljük meg, hogy az összeadás minden tagjában szerepel $\m_i$!) Mivel $\b_1,\ldots,\b_i,\ldots,\b_k$ bázis, így minden zárójeles tag nulla, így pont az összeadás $i$-edik eleméből kiolvasható hogy $\m_i\alpha_i=0,\ \alpha_i\not=0 \Rightarrow \mu_i=0$. Ebből máris következik a többi együttható értéke:
 	
 	\begin{center}
 		$(m_1+0\alpha_1)\b_1+\ldots+(0\alpha_i)\b_i+\ldots+(\m_k+0\alpha_k)\b_k=\0$\\
@@ -327,12 +327,13 @@
 	
 	Ennek a tételnek a bizonyítási módszerét sokszor be lehet vetni, így érdemes alaposan elmélyedni benne. A következő előadásban megtanuljuk, hogyan lehet gyakorlatban kényelmesen alkalmazni ezt a tételt.
 	
+	\smallskip
 	Most kerüljön tisztázásra a komponens/koordináta dolog.
 	
 	DEFINÍCIÓ: $V\leqq \Rn, \b_1,\ldots,\b_k$ bázis $V$-ben, $\a \in V, \a = \alpha_1\b_1+\ldots+\alpha_k\b_k$ esetén azt mondjuk, hogy az \a~koordinátái $\b_1,\ldots,\b_k$ bázisban $\alpha_1, \ldots, \alpha_k$. Jelölése:
 	
 	\begin{center}
-		$[\a]_\b=[\a]_{\b_1,\ldots,\b_k}=
+		$[\a]_\b:=[\a]_{\b_1,\ldots,\b_k}:=
 		\begin{bmatrix}
 			\alpha_1\s\\
 			\alpha_2\s\\
@@ -345,7 +346,7 @@
 		\begin{bmatrix}
 			4\s\\
 			5\s
-		\end{bmatrix}$.\\
+		\end{bmatrix}$,\ 
 		$\a=4
 		\begin{bmatrix}
 			1\s\\
@@ -354,7 +355,15 @@
 		\begin{bmatrix}
 			0\s\\
 			1\s
-		\end{bmatrix}$, ebben a bázisban \a\ koordinátái 5 és 4, míg
+		\end{bmatrix}$,  azaz 
+		$\begin{bmatrix}
+			1\s\\
+			0\s\\
+		\end{bmatrix},  
+		\begin{bmatrix}
+			0\s\\
+			1\s\\
+		\end{bmatrix}$ bázisban \a\ koordinátái 5 és 4, míg
 	$\a=2
 	\begin{bmatrix}
 		2\s\\
@@ -373,9 +382,9 @@
 		0\s\\
 		5\s
 	\end{bmatrix}$
-	   bázisban a koordinátái 2 és 1.
+	   bázisban \a\ koordinátái 2 és 1.
 	
-	Így felírhatjuk az elemi bázistranszformációhoz egy táblázatot, melyből kiovlasható hogyan változnak a koordináták a bázis megváltozásának következtében.
+	E definíció ismeretében írjunk fel egy, az elemi bázistranszformációhoz tartozó táblázatot, melyből kiolvasható hogyan változnak a koordináták a bázis megváltozásának következtében.
 	
 	\begin{center}
 		\begin{tabular}{c|cc||c|cc}
@@ -389,13 +398,13 @@
 		\end{tabular}
 	\end{center}
 	
-	   A táblázat helyes kiolvasása: ,,a második oszlopban látom, hogy \a\  vektornak mik a koordinátái $\b_1,\ldots,\b_k$ bázisban, és ezalapján felírhatom, hogy $\a = \alpha_1\b_1+\ldots+\alpha_k\b_k$.''
+	   A táblázatból kiolvasható, hogy az \a\ vektor oszlopában $\b_1$-hez az $\alpha_1$, $\b_i$-hez $\alpha_i$, $\b_k$-hoz $\alpha_k$ együttható tartozik, azaz $\a=\alpha_i\b_1+\ldots+\alpha_k\b_k.$
 	
-	   A táblázat első fele az eredeti $\b_1,\ldots,\b_k$ bázisban mutatja a koordinátákat, a második fele az elemi bázistranszformáció után, melyben az $\b_i$-t \a-ra cseréljük. Az hogy miért épp ezek lesznek a koordináták, fentebb megfigyelhető az EBT bizonyításában.
+	   A táblázat első fele (a dupla vonal előtt) az eredeti $\b_1,\ldots,\b_k$ bázisban mutatja a koordinátákat, a második fele az elemi bázistranszformáció után, melyben az $\b_i$-t \a-ra cseréljük. Az hogy miért épp ezek lesznek a koordináták, fentebb megfigyelhető az EBT bizonyításában.
 	
 	Most ideje letudni az asszociativitás bizonyítását véges sok vektor összegénél.
 	
-	*otthon van a tétel és bizonyítása*
+	%TODO otthról összegyűjteni a maradékot
 	
 	
 	
