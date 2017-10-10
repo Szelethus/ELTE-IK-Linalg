@@ -86,14 +86,14 @@
 		\item $\exists$ - egzisztenciális kvantor, köznapi nyelven ,,létezik/van olyan''
 		\item $!$ \ - egyértelműség jele, ,,csak egy ilyen van''
 	\end{compactitem}
-	Ezeknek a jeleknek a megértése kulcsfontosságú a későbbi anyagok megértésénél, így érdemes gondoskodni arról, hogy teljesen tisztában legyünk jelentésükkel.
-	
-	Alkalmazásban: $\forall a \in \R~\exists!b \in \R: \quad a+b=0.~$ Ez köznapi nyelven azt jelenti, hogy \emph{minden} $a$ valós számhoz \emph{egyértelműen létezik} olyan $b$ valós szám, melyre $a+b=0$. A kijelentés pedig nyilvánvalóan igaz, hisz minden valós számnak a $(-1)$-szerese lesz az, mellyel összeadva az összeg 0. A tételek helyes kiolvasásáról bővebben a második előadásban lesz szó.\\
-	DEFINÍCIÓ: (Descartes-szorzat) Legyen $A$ és $B$ halmazok. Ekkor $A$ és $B$ Descartes-szorzata:
+	Ezeknek a jeleknek a megértése kulcsfontosságú a későbbi anyagokhoz. Tekintsünk is egy példát:
+	\[\forall a \in \R\quad \exists!b \in \R: \quad a+b=0\]
+	Ez köznapi nyelven azt jelenti, hogy \emph{minden} $a$ valós számhoz \emph{egyértelműen létezik} olyan $b$ valós szám, melyre $a+b=0$. A kijelentés pedig nyilvánvalóan igaz, hisz minden valós számnak a $(-1)$-szerese lesz az, mellyel összeadva az összeg 0. A tételek helyes kiolvasásáról bővebben a második előadásban lesz szó.\\
+	DEFINÍCIÓ: (Descartes-szorzat) Legyenek $A$ és $B$ halmazok. Ekkor $A$ és $B$ Descartes-szorzata:
 	\begin{center}
 		$A \times B=\{(a,b)~|~a\in A~~\text{és}~~b\in B\}$.
 	\end{center}
-	\noindent Szemléletesebben $A\times B$ olyan \emph{rendezett párok} halmaza, melynek első komponense A-béli, második komponense B-beli. A rendezet pároknak van egy fontos tulajdonsága a hagyományos halmazokkal szemben, itt a sorrend ugyanis számít, $(a,b) \overset{\text{\textit{ált.}}}{\not=} (b,a)$.
+	\noindent Azaz $A\times B$ olyan \emph{rendezett párok} halmaza, melynek első komponense A-béli, második komponense B-beli. A rendezet pároknak van egy fontos tulajdonsága a hagyományos halmazokkal szemben, itt a sorrend ugyanis számít, azaz $$\forall a\in A,\quad \forall b\in B,\quad a\not=b: \quad (a,b)\not=(b,a).$$
 	
 	\noindent Alkalmazásban: $A=\{1, 2, 3\}, \quad B=\{a, b, c\}$ esetén\\
 	$A\times B=\{(1, a), (1, b), (1, c), (2, a), (2, b), (2, c), (3, a), (3, b), (3, c)\}$.
@@ -103,24 +103,24 @@
 	
 	Hol találkoztunk mi középiskolában rendezett párokkal (azon belül is rendezett \emph{szám}pá\-rok\-kal)? A derékszögű koordinátarendszerbéli pontok, vagy ahhoz tartozó helyvektorok felfoghatók rendezett valós szám párokként, pl. $(4, 2)$. 
 	
-	Elevenítsük fel a síkbeli vektorok összeadását! Derékszögű koordinátarenszdszerben a ,,rajzolós'' paralelogramma módszer ismeretes, algebrai módszerekkel a koordinátánkénti  összeadás, pl. $(1, 2) + (3, 4) =(4, 6)$. Általánoasbban, egy $(x_1, y_1) \in \R^2$ és $(x_2, y_2) \in \R^2$ koordinátákkal rendelkező vektor összege $(x_1+x_2, y_1+y_2) \in \R^2$.
+	Elevenítsük fel a síkbeli vektorok összeadását! Derékszögű koordinátarenszdszerben a ,,rajzolós'' paralelogramma módszer ismeretes, algebrai módszerekkel a koordinátánkénti  összeadás, pl. $(1, 2) + (3, 4) =(4, 6)$. Általánosabban, egy $(x_1, y_1) \in \R^2$ és $(x_2, y_2) \in \R^2$ koordinátákkal rendelkező vektor összege $(x_1+x_2, y_1+y_2) \in \R^2$.
 	
-	Skalárral való szorzás (figyelem, NEM skaláris szorzás!) vektorokra úgy értelmeztük, hogy ,,annyiszeresére zsugorítom/növelem, vagy változtatom az irányát'' a vektornak, amennyivel szorzom. Ez algebrai úton egy tetszőleges $\lambda \in \R$ számra és $(x,y)\in\R^2$ vektorra értelmezett skalárral vett szorzás végeredménye $\lambda(x, y)= (\lambda x, \lambda y) \in \R^2$.
+	A skalárral való szorzást (figyelem, NEM skaláris szorzás!) vektorokra úgy értelmeztük, hogy ,,annyiszeresére zsugorítom/növelem, vagy változtatom az irányát'' a vektornak, amennyivel szorzom. Ez algebrai úton egy tetszőleges $\lambda \in \R$ számra és $(x,y)\in\R^2$ vektorra értelmezett skalárral vett szorzás végeredménye $\lambda(x, y)= (\lambda x, \lambda y) \in \R^2$.
 	
-	Vegyünk most egy kicsit absztraktabb példát, egy számegyenest. Felfoghatjuk a számegyenesen lévő számokat úgy, mint 1 komponensű\footnote{komponens = elem, ennél a példánál még azt is mondhatjuk hogy koordináta, de ez később gondokat okozhat, amikor ez a két fogalom nem lesz ekvivalens.} vektorok, pl. 3 helyett mondjuk azt hogy (3) az origóból a 3-ba mutató helyvektor. A paralelogramma módszer továbbra is működik, hisz ha (2) és (1) vektort össze akarjuk adni, akkor (1) kezdőpontját (2) végpontjához illesztve megkapjuk a (3) vektort. 
+	Vegyünk most egy kicsit szokatlanabb példát vektorokra, egy számegyenest. Felfoghatjuk a számegyenesen lévő számokat úgy, mint 1 komponensű\footnote{komponens = elem, ennél a példánál még azt is mondhatjuk hogy koordináta, de ez később gondokat okozhat, amikor ez a két fogalom nem lesz ekvivalens.} vektorok, pl. 3 helyett mondjuk azt hogy (3) az origóból a 3-ba mutató helyvektor. A paralelogramma módszer továbbra is működik, hisz ha (2) és (1) vektort össze akarjuk adni, akkor (1) kezdőpontját (2) végpontjához illesztve megkapjuk a (3) vektort. 
 	
 	Ebben tulajdonképpen nincs semmi meglepő. Ez csak valós számok összeadása. Megemlítendő, hogy a skalárral való szorzás is tökéletesen működik, pl. $6\cdot(4)=(24)$.
 	
 	Ugorjunk egy újabb példára, egy 3 dimenziós derékszögű koordinátarendszerbe. Itt minden vektornak 3 komponense van. Nem meglepő módon $(1,2,3)+(5,3,0)=(6,5,3)$, skalár szorzással $5(1,0,3)=(5,0,15)$. Minden vektor itt felfogható rendezett valós számhármasként ($\R^3$).
 	
 	\medskip
-	Feltűnhet, hogy minden alkalommal, amikor műveletet hajtunk végre egy vektoron, simán egyszerre több számmal csináljuk ugyanazt. Ezt a tulajdonságot másra is felhasználhatnánk, ahol egyszere több számon szeretnénk hasonló műveleteket végrehajtani. Próbáljunk megalkotni egy olyan struktúrát, mely ezen igényünket kielégíti! Induljunk ki rendezett valós szám 3-asokból. (Itt már nem geometriai vektorokról fogunk beszélni!)
+	Feltűnhet, hogy minden alkalommal, amikor műveletet hajtunk végre egy vektoron, lényegében ugyanazt a műveltet hajtjuk végre egyszerre több valós számon. Ezt a tulajdonságot másra is felhasználhatnánk, ahol egyszere több számon szeretnénk hasonló műveleteket végrehajtani. Próbáljunk megalkotni egy olyan struktúrát, mely ezen igényünket kielégíti! Induljunk ki rendezett valós szám 3-asokból. (Itt már nem geometriai vektorokról fogunk beszélni!)
 	
 	$\begin{bmatrix}
 		\alpha_1 \s\\
 		\alpha_2\s \\
 		\alpha_3\s \\
-	\end{bmatrix} \in \R^3$ legyen egy ilyen elem, $\R^3$ jelölje az összes ilyen rendezett valós számhármas halmazát. Bár vektoroknál volt definiálva összeadás és skalárral vett szorzás, mi most valami újat szeretnénk alkotni, így itt definiálnunk kell ezeket a műveleteket is.
+	\end{bmatrix} \in \R^3$ legyen egy ilyen elem, $\R^3$ jelölje az összes ilyen rendezett valós számhármas halmazát. Bár vektoroknál volt definiálva összeadás és skalárral vett szorzás, azonban megállapodtunk abban hogy most egy új struktúrát hozunk létre, így itt definiálnunk kell ezeket a műveleteket is.
 	
 		{\centering
 			$ \a=
@@ -153,11 +153,11 @@
 			\end{bmatrix} \in \R^{3}$.
 			\par}
 	
-	\noindent Bár nem \emph{muszáj} oszloposan írni, így célszerű használni a későbbi alkalmazásuk miatt.
+	\noindent Elsőre talán összezavaró lehet az, hogy ezek a rendezett számhármasok a már jól ismert vektorokkal szemben oszloposan vannak ábrázolva. Bár nem \emph{muszáj} ezt így csinálni (sőt, nagyon sokan preferálják az irodalomban a sorban történő írását), de a későbbi alkalmazások végett célszerű ragaszkodni ehhez a konvencióhoz.
 	
 	Lévén ezek csak rendezett valós számhármasok, félrevezető lenne elemeit koordinátáknak nevezni, így maradjunk a komponens (vagy elem) kifejezésnél. Ez a rész később jobban ki fog tisztulni.
 	
-	Figyeljük meg ezek alkalmazásait egy lineáris egyenletrendszerben (továbbiakban LER): $x, y, z \in \R $
+	Figyeljük meg ezek alkalmazásait egy lineáris egyenletrendszerben (továbbiakban LER). Legyen $x, y, z \in \R:$
 	
 	{\centering
 		$\begin{matrix} 
@@ -167,28 +167,28 @@
 		\end{matrix}$
 		\par}
 
-	\noindent Legyen:
+	\noindent Definiáljunk a LER alapján 3 oszlopvektort:
 	
 	{\centering
-		$\a=
+		$\a:=
 		\begin{bmatrix}
 		1\s \\
 		2\s \\
 		3\s \\
 		\end{bmatrix},~
-		\b~=
+		\b~:=
 		\begin{bmatrix}
 		1\s \\
 		3\s \\
 		4\s \\
 		\end{bmatrix},~
-		\c~=
+		\c~:=
 		\begin{bmatrix}
 		1\s \\
 		4\s \\
 		5\s \\
 		\end{bmatrix},~
-		\d~=
+		\d~:=
 		\begin{bmatrix}
 		3\s \\
 		9\s \\
@@ -254,10 +254,9 @@
 		$
 		\par}
 	
-	\noindent Ezeket a lépéseket azért tehettük meg, mert korábban e szabályok szerint definiáltuk őket. Könnyen megállapítható hogy $\a+\b+\c=\d$, megoldás lesz, azaz $x_1=1, y_1=1, z_1=1$. Több (sőt, végtelen sok) megoldás van, azonban mi haladjunk tovább: 
+	\noindent Ezeket a lépéseket azért tehettük meg, mert korábban e szabályok szerint definiáltuk őket. Könnyen megállapítható hogy $\a+\b+\c=\d$, megoldás lesz, azaz $x_1=1, y_1=1, z_1=1$. Több (sőt, végtelen sok) megoldás van, azonban mi haladjunk tovább.
 	
-	\pagebreak
-	Próbáljuk meg a példánkat általánosítani\footnote{ide kéne valami frappáns leírás}. Meglehetősen kényelmetlen lenne a fenti LER-ben minden együtthatónak és változónak új betűjelet adni, így az alábbi jelölést alkalmazzuk majd:
+	Próbáljuk meg a példánkat általánosítani. Meglehetősen kényelmetlen lenne a fenti LER-ben minden együtthatónak és változónak új betűjelet adni, így az alábbi jelölést alkalmazzuk majd:
 	
 	\begin{center}
 		$\begin{matrix}
@@ -282,7 +281,7 @@
 	\end{tabular}
 	\end{center}
 	
-	\noindent Félreértést elkerületndő, $a_{11}$ nem a 11. $a$-ra utal, hanem az első sor első oszlopában lévő változó együtthatójára (helyes kiejtés: ,,a egy egy''). Általánosan:
+	\noindent Félreértést elkerületndő, $a_{11}$ nem a tizenegyedik $a$-ra utal, hanem az első sor első oszlopában lévő változó együtthatójára (helyes kiejtés: ,,a egy egy''). Általánosan:
 	
 	
 	\begin{center}
@@ -290,7 +289,7 @@
 	\end{center}
 	
 
-	\noindent (értelemszerűen $i,j \in \N$, ezt nem sokszor fogom kiírni). Ez a kétindexes jelölés majd a mátrixoknál lesz igazán fontos. Így:
+	\noindent (értelemszerűen $i,j \in \N$, ezt nem sokszor fogom kiírni). Ez a kétindexes jelölés majd a mátrixoknál lesz igazán fontos. Hasonlóan, definiáljunk rendezett valós számhármasokat most is a LER alapján:
 	\begin{center}
 		$\b =
 		\begin{bmatrix}
@@ -323,11 +322,9 @@
 		a_{34}\s \\
 		\end{bmatrix}$.
 	\end{center}
-	
-	\noindent Ezeknek a jelöléseknek a megértése kulcsfontosságú, így erősen javallott alaposan átnézni és értelmezni őket továbbhaladás előtt.
-	
-	\bigskip
-	Nyilván, nem csak 3 egyenlettel kell foglalkoznunk egyszerre, általában többel, mondjuk $n$ darabbal ($n \in \N$, ez is ritkán lesz kikötve):
+	Ismét megállapítható:
+	\[\a_1 x_1+\a_2 x_2+\a_3 x_3+\a_4 x_4=\b \]
+	Nyilván, általában nem csak 3 egyenlettel kell foglalkoznunk egyszerre, hanem többel, mondjuk $n$ darabbal ($n \in \N$, ez is ritkán lesz kikötve):
 	\begin{center}
 		$\begin{matrix}
 		a_{11}x_{1} + a_{12}x_{2} + a_{13}x_{3} + a_{14}x_{4} &=& b_{1}\\
@@ -372,9 +369,7 @@
 	\end{center}
 	Igen, ezeket azonban így nem adhatjuk össze, hisz egyszerre $n$ szám ($n \not=1, 3$) összeadása nem volt még definiálva. Tehát, legyenek a fenti szimbólumok rendezett valós szám $n$-esek, $\Rn$~elemei, és:
 	
-	\pagebreak
-	 DEFINÍCIÓ: { Legyen} $n$ { rögzített pozitív
-		egész szám, továbbá}
+	DEFINÍCIÓ: { Legyen} $n$ { rögzített pozitív egész szám, továbbá}
 	
 	{\centering 
 		$\begin{bmatrix}
@@ -601,7 +596,7 @@
 	
 	\noindent Ezen a ponton érdemes megjegyezni, hogy egyszerre 3 rendezett valós szám $n$-est összeadni nem tudunk, mindig páronként tesszük ezt meg (ezzel még én is csaltam pár oldallal korábban!). Persze könnyen belátható, hogy így VÉGES sok rendezett valós szám $n$-es összeadása elvégezhető egy lépésben, de valójában itt is páronkénti összeadások sorozatát hajtjuk végre. Ne feledjük el, itt csak 3 $\Rn$-béli rendezett valós szám $n$-es asszociativitását bizonyítottuk, nem tetszőleges véges sokét. Nemsokára ezt is belátjuk, azonban ez kicsit nagy falat lenne ilyen hamar.
 	
-	Valós számok összeadásánál volt un. semleges elemünk. Olyan szám, melyre teljesül, hogy minden valós számmal vett összege az eredeti számot adja vissza: nulla.
+	Valós számok összeadásánál volt egy un. \textit{semleges elemünk}. Olyan szám, melyre teljesül, hogy minden valós számmal vett összege az eredeti számot adja vissza: nulla.
 	
 	Rendezett valós szám $n$-eseknél mi lesz az additív (összeadásra értelmezett) semleges elem? Könnyen belátható:
 	
@@ -715,9 +710,15 @@
 	\noindent II./5. $\forall \a \in  \Rn  \quad 1\a =\a $.
 	
 	\medskip 
-	Bár elsőre ez lehet hogy nehezen érthető, de ez csupán minden, már korábban elhangzott dolog összefoglalása volt. Diszkrét matematika I-ben elhangzó algebrai struktúrával kapcsolatos tudások megszerzése után még sokkal világosabb lesz ez a rész.
+	Bár elsőre ez lehet hogy nehezen érthető, de ez csupán minden, már korábban elhangzott megállapítások összefoglalása volt. Diszkrét matematika I-ben elhangzó algebrai struktúrával kapcsolatos tudások megszerzése után még sokkal világosabb lesz ez a rész.
 	
-	Lévén rendelkeznek minden középiskolában tanult vektor tulajdonsággal, $\Rn$-t \textbf{vektortér}nek, elemeit \textbf{vektor}oknak nevezzük majd (rendezett valós szám $n$-esek helyett). Tartsuk észben, itt nem ,,$n$ dimenzióbéli elképzelhetetlen irányított szakaszokkal bűvészkedünk'' -- a vektor kifejezés a hasonló tuladjonságuk miatt célszerű, illetve mert $\R^1, \R^2, \R^3$-ban szemléletesen is megmutatható valamennyi dolog. Motivációnk továbbra is a kényelmes adatkezelés, melyet e vektorokban tárolhatunk.\\
+	Érdemes megjegyezni, hogy ez az un. \textit{axiómarendszer} kiegészíthető, pl.: semleges elem és inverz \emph{egyértelműen} létezik. Ez következik abból, hogy az összeadás itt kommutatív, azonban ezeknek a megértése könnyebb a diszkrét matematika csoportlemélettel foglalkozó részének elhangzása után.
+	
+	Fontosabb megállapítás azonban az, hogy ha $\lambda \in \R,~\b \in \Rn: ~\lambda\b=\0$, akkor $\lambda=0$ vagy $\b=\0$. Ez nagyon hasonlít a valós számok szorzatánál, ahol ha a szorzat egyenlő nullával, akkor a szorzat (legalább) egyik tagja is egyenlő nullával.
+	
+	
+	Lévén rendelkeznek minden középiskolában tanult vektor tulajdonsággal, $\Rn$-t \textbf{vektortér}nek, elemeit \textbf{vektor}oknak nevezzük majd (rendezett valós szám $n$-esek helyett). Tartsuk észben, itt nem ,,$n$ dimenzióbéli elképzelhetetlen irányított szakaszokkal bűvészkedünk'' -- a vektor kifejezés a hasonló tuladjonságuk miatt célszerű, illetve mert $\R^1, \R^2, \R^3$-ban egyszerűen lehet szemléltetni a struktúra tulajdonságait. Motivációnk továbbra is egy, a geometriai vektorok struktúrájához \textit{hasonló}, általánosabb struktúra létrehozása.
+	
 	Értelemszerűen $\Rn$-nek vannak részhalmazai, de érdemes egy speciális részhalmazt definiálni: olyat, mely összeadásra és skalárral való szorzásra zárt. Ez alatt azt értjük, hogy bármely két elemét vesszük e $W \subset \Rn$~részhalmaznak, az összegük is eleme lesz $W$-nek. Skalárral vett szorzásra \emph{bármely} valós számmal vett szorzás eredményét szintén tartalmazza $W$. Összefoglalva:
 	
 	 DEFINÍCIÓ: $W$ { altere} $\Rn${-nek} \quad [{ jelölése:}
@@ -743,11 +744,8 @@
 	\noindent Ez egy olyan halmaz, mely minden olyan vekort tartalmaz, melyeknek az első komponensétől eltekintve minden eleme 0. 
 	Megjegyzés: \0 minden altérnek eleme, hisz $\lambda=0$ esetén (azaz ha skalár szorzásnál 0-val szorozzuk meg a vektort) ezt is tartalmaznia kell. Az alterek \emph{nem} kevesebb komponensből álló vektorokat tartalmaznak. Konyhanyelven $W$~$\Rn$~altere ha ,,nem lehet kijutni belőle'', zárt.
 	
-	Érdemes megjegyezni, hogy az axiómarendszerünk kiegészíthető, pl.: semleges elem és inverz \emph{egyértelműen} létezik. Ez következik abból, hogy az összeadás itt kommutatív, azonban ezeknek a megértése könnyebb a diszkrét matematika csoportlemélettel foglalkozó részének elhangzása után.
-	
-	Fontosabb megállapítás azonban az, hogy ha $\lambda \in \R,~\b \in \Rn: ~\lambda\b=\0$, akkor $\lambda=0$ vagy $\b=\0$. Ez nagyon hasonlít a valós számok szorzatánál, ahol ha a szorzat egyenlő nullával, akkor a szorzat (legalább) egyik tagja is egyenlő nullával.
-	
-	Most egyszerre több vektorral fogunk foglalkozni, így bevezetjük a \textbf{vektorrendszer} (röviden \textbf{vr}) fogalmát. Egy vektorrendszer csupán annyiban különbözik egy halmaztól, hogy ugyanabból az elemből többet is tartalmazhat (míg egy halmazban egyszerre egy elem csak egyszer szerepelhet).
+	\medskip
+	Az elkövetkezendő pár definícióban fontos lesz, hogy akár több azonos vektorral is tudjunk egyszerre foglalkozni, így bevezetjük a \textbf{vektorrendszer} (röviden \textbf{vr}) fogalmát. Egy vektorrendszer csupán annyiban különbözik egy halmaztól, hogy ugyanabból az elemből többet is tartalmazhat (míg egy halmazban egyszerre egy elem csak egyszer szerepelhet). (A definíciókat olvassuk át alaposan, később ezekhez magyarázat tartozik.)
 	
 	DEFINÍCIÓ: Legyen $k\ge1$,~$\a_1, \a_2, \ldots , \a_k \in \Rn,~ \lambda_1, \lambda, \ldots , \lambda_k \in \R.$ Az $\a_1, \a_2, \ldots , \a_k$ \textbf{vr}. $\lambda_1, \lambda, \ldots , \lambda_k$ együtthatós \emph{lineáris kombinációja}:
 	
@@ -773,7 +771,15 @@
 	(azaz, ha a vektorrendszernek CSAK { a triviális} lineáris kombinációja ad
 	nullvektort). 
 	
-	Vegyünk ezen definíciókra egy példát: legyen adott két $\R^2$-béli vektort, melynek \emph{valamilyen} lineáris kombinációja egyenlő $\0 \in \R^2$-val. Ha lineárisan függetlenek, akkor egy rövid számolással megállapíthajuk hogy mindkét együttható is egyenlő nullával:\\  ($\alpha, \beta \in \R$)
+	\medskip
+	Vegyünk a lineáris függetlenségre egy példát: legyen adott két $\R^2$-béli vektor, melynek \emph{valamilyen} lineáris kombinációja egyenlő $\0 \in \R^2$-val. Definíció szerint, ha ez a két vektor L, akkor lineáris kombinációval csak úgy tudják előállítani a nullvektort, ha a lineáris kombinációban minden együttható 0. Vegyük példaképp a $\begin{bmatrix}
+	1\\
+	0
+	\end{bmatrix},\ 
+	\begin{bmatrix}
+	0\\
+	1
+	\end{bmatrix}\in\R^2$ vektorokat, és lássuk be hogy valóban L-ek! $\alpha,\beta\in\R$-re:
 	
 	\begin{center}
 		$\alpha
@@ -813,15 +819,16 @@
 	\begin{bmatrix}
 		0\s\\
 		1\s \\
-	\end{bmatrix}$ L, hisz lineáris kombinációjuk csak akkor lehet \0-val egyenlő, ha a lineáris kombinációjuk triviális. Ha olyan eredményt kaptunk volna (nyilván más vektorokkal vett \0 eredményű lineáris kombinációnál) mint pl. $\alpha=-\beta$, akkor leolvasható hogy mindaddig amíg $\alpha~\beta$ ellentetje, az eredmény \0 lesz, így lineárisan összefüggők (pl. 
-	$\begin{bmatrix}
-		1\s\\
-		0\s \\
-	\end{bmatrix}$ és 
-	$\begin{bmatrix}
-	1\s\\
-	0\s \\
-	\end{bmatrix}$-ből ugyanezzel a módszerrel levezethető hogy $\alpha=-\beta$).
+	\end{bmatrix}$ L, hisz lineáris kombinációjuk csak akkor lehet \0-val egyenlő, ha a lineáris kombinációjuk triviális. 
+	
+	Ha a lineáris függetlenséget pl. a $\begin{bmatrix}
+		1\\
+		0
+	\end{bmatrix},\ 
+	\begin{bmatrix}
+		1\\
+		0
+	\end{bmatrix}\in\R^2$ vektorokra szeretnénk belátni, számolásunk végeredménye $\alpha=-\beta$ lett volna. Megállapítható, hogy ez esetben amíg $\alpha$-t úgy választjuk meg, hogy $\beta$ ellentettje legyen, addig a lineáris kombináció eredménye \0 lesz. Definíció alapján (lévén nem \textit{csak} triviális lineáris kombinációval tudjuk előállítani a \0-t) ez a vektorrendszer Ö.
 	
 	Fontos megjegyezni: attól még hogy egy vr. triviálisan elő \emph{tudja} állítani a nullvektort, még nem lesz feltétlenül L. Így $\m_1=\ldots=\m_k=0$ és $\a_1,\ldots, \a_k \in \Rn$~esetén  \begin{center}
 		$\m_1\a_1+\ldots+\m_k\a_k=\0 \stackrel{\text{\textit{ált.}}}{\not\Rightarrow}\a_1,\ldots, \a_k $~L,
